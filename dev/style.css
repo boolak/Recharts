@@ -1,0 +1,35 @@
+@charset "UTF-8";
+
+/*小图标*/
+.ico { display: inline-block; width: 30px; height: 30px; overflow: hidden; vertical-align: middle; }
+.ico-basic { background: url(img/ico-basic.png) no-repeat; }
+.ico-yed { background: url(img/ico-yed.png) no-repeat; }
+.ico-map { background: url(img/ico-map.png) no-repeat; }
+.ico-kpi { background: url(img/ico-kpi.png) no-repeat; }
+.ico-action { background: url(img/ico-action.png) no-repeat; }
+.ico-recruit { background: url(img/ico-recruit.png) no-repeat; }
+.ico-bidding { background: url(img/ico-bidding.png) no-repeat; }
+.ico-property { background: url(img/ico-property.png) no-repeat; }
+.ico-punish { background: url(img/ico-punish.png) no-repeat; }
+.ico-news { background: url(img/ico-news.png) no-repeat; }
+.ico-honor { background: url(img/ico-honor.png) no-repeat; }
+
+/*
+顶部背景色 #313a49
+
+字灰色 #b7c0ce
+字深灰色 #5e6a7f
+*/
+#App { background: #f5f7fb; }
+
+/*覆盖按钮样式*/
+body .mt-btn-grey, body .mt-btn-red, body .mt-btn-yellow, body .mt-btn-green, body .mt-btn-blue, body .mt-btn-round-grey, body .mt-btn-round-red, body .mt-btn-round-yellow, body .mt-btn-round-green, body .mt-btn-round-blue { border-radius: 0; box-shadow: 0 2px 4px rgba(155, 163, 184, 0.5); }
+body .mt-btn-blue, body .mt-btn-round-blue { background-color: #5f93e7; }
+body .mt-btn-grey, body .mt-btn-round-grey { background-color: #d1d5de; color: #fff; }
+body .mt-btn-green, body .mt-btn-round-green { background-color: #42c583; }
+body .mt-input input[type=text], body .mt-input-block input[type=text], body .mt-input input[type=password], body .mt-input-block input[type=password] { height: 40px; }
+body .border { border: 1px solid #e2e9f3; }
+
+/*覆盖分页按钮*/
+body .mt-pagelist-right .mt-btn-grey { box-shadow: none; }
+body .mt-round { border-radius: 1000px; }

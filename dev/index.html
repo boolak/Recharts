@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+<head lang="zh-cn">
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="description" content="">
+  <meta name="keywords" content="">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>react for echarts</title>
+  <meta name="renderer" content="webkit">
+  <!-- No Baidu Siteapp-->
+  <meta http-equiv="Cache-Control" content="no-siteapp"/>
+  <meta name="apple-mobile-web-app-title" content="BBD"/>
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black">
+  <script> var HOME_PATH = ''; var ECHART_ROOM = []; var HOST_PATH = 'http://10.10.20.199:18888';</script>
+  <!--iconfont  -->
+  <link rel="stylesheet" href="/iconfont/iconfont.css" />
+  
+  <!--[if lt IE 9]>
+  <script src="./libs/js/html5.js"></script>  
+  <![endif]-->
+  <!--[if (gte IE 9)|!(IE)]><!-->
+
+  
+<script src="/libs/js/jquery-1.11.2.js"></script>
+  <!--<script src="./libs/js/jquery-2.1.1.js"></script>-->
+<script src="/libs/js/jquery.mCustomScrollbar.concat.min.js"></script>
+<link rel="stylesheet" href="/libs/css/jquery.mCustomScrollbar.css" />
+
+<script src="/libs/js/echarts.all.js"></script>
+<!-- <script src="/libs/js/echartconfig.js"></script>
+<script src="/libs/js/echarts-china.js"></script>
+<script src="/libs/js/guizhou.js"></script>
+
+<script src="/libs/js/bbdechart.js"></script> -->
+<script src="/libs/js/pdfobject.js"></script>
+<script src="/libs/js/d3.min.js"></script>
+<script src="/map/js/map.js"></script>
+<script src="/line/js/line.js"></script>
+
+
+
+  <!-- <script src="http://api.map.baidu.com/api?v=2.0&ak=NNC6cYdsdKYKvkzV2CUcfdGCakLzs4YQ"></script>  -->
+
+</head>
+<body>
+<div id="App"></div>
+<script>
+  /*
+  * 线上线下ajax请求地址判断
+  * 线下开发时 window.devEnviroment 置为 true
+  * 线上运行时 window.devEnviroment 置为 false
+  * */
+  window.devEnviroment = true;
+  window.getEnviromentAjaxUrl = function (devAjaxUrl, prodAjaxUrl) {
+    return window.devEnviroment ? devAjaxUrl : prodAjaxUrl;
+  }
+
+</script>
+</body>
+</html>

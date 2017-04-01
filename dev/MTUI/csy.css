@@ -1,0 +1,14 @@
+/*tips插件*/
+.tips_bubble { position: absolute; text-align: center; border-radius: 6px; z-index: 9999; padding: 0px 2px; background: red }
+
+/* border-box 盒模型 */
+.tips_bubble, .tips_bubble .tips_arrow { -webkit-box-sizing: border-box; -moz-box-sizing: border-box; box-sizing: border-box }
+
+/*  定义箭头的总体样式 */
+.tips_bubble .tips_arrow { display: inline-block; position: absolute; width: 0; height: 0; border: 8px solid; pointer-events: none; }
+
+/* 分别定义不同方向的箭头的样式 */
+.tips_bubble.top .tips_arrow { border-color: red transparent transparent; top: 100%; left: 50%; margin-left: -8px }
+.tips_bubble.bottom .tips_arrow { border-color: transparent transparent red; bottom: 100%; left: 50%; margin-left: -8px }
+.tips_bubble.left .tips_arrow { border-color: transparent transparent transparent red; top: 50%; left: 100%; margin-top: -8px }
+.tips_bubble.right .tips_arrow { border-color: transparent red transparent transparent; top: 50%; right: 100%; margin-top: -8px }

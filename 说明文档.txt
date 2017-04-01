@@ -1,0 +1,17 @@
+打包发布：start-build.bat
+
+浏览器自动刷新开发模式：start-dev-old.bat
+
+HOT开发模式：
+第一步启动服务器：start-server.bat
+第二步进入热开发：start-dev-hot.bat
+
+热开发模式和自动刷新模式二选一。
+
+###规范说明：
+
+每个jsx文件顶部都要加上 "use strict"，无这句话，代码不于通过
+
+文件命名不得用1，2，3，4...来命名，文件名看不懂不于通过
+
+模拟的ajax数据不能因为偷懒，写到jsx里面，请写到/build/data/**.json 里面，使用ajax异步获取，否则不于通过
