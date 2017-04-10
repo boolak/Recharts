@@ -19,7 +19,7 @@ const LineBar = React.createClass({
                     }
                 },
                 type:this.props.type[i%2],
-                barWidth:40,
+                barWidth:this.props.barWidth||36,
                 data:this.props.parms.series[i],
                 itemStyle:{
                     normal:{
@@ -60,10 +60,11 @@ const LineBar = React.createClass({
         const option = {
             //color:this.props.parms.color,
             title:{
-                text:this.props.title,
+                text:this.props.title||'',
                 textStyle:Config.title.textStyle,
                 padding:Config.title.padding
             },
+            grid:this.props.grid,
             tooltip: {
                 trigger: 'axis',
                 axisPointer:{
@@ -84,9 +85,7 @@ const LineBar = React.createClass({
             },
             legend:{
                 data:this.props.parms.legend,
-                textStyle:Config.legend.textStyle,
-                width:500,
-                left:390
+                textStyle:Config.legend.textStyle
             },
             xAxis: [
                 {

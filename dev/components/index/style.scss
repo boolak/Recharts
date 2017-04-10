@@ -1,0 +1,56 @@
+.charts{
+    overflow: hidden;
+    li{
+        position: relative;
+        box-shadow: 0 0 10px #33465d inset; 
+        width:25%;
+        float: left;
+        height:300px;
+        overflow: hidden;
+        &:hover{
+            .det-btn{
+                transform:rotate(0deg);
+            }
+        }
+    }
+}
+
+.det-btn{
+    position:absolute;
+    right:0;
+    transform:rotate(-90deg);
+    transform-origin: right top;
+    cursor: pointer;
+    background: #1e4cb9;
+    padding:2px 6px;
+    border-radius: 4px;
+    color:#fff;
+    z-index: 111;
+    transition:all ease .3s;
+}
+
+.det-pop{
+    display: none;
+    width:800px;
+    height:600px;
+    position: fixed;
+    top:50%;left:50%;
+    margin-left: -400px;
+    margin-top: -300px;
+    background: #06293e;
+    z-index: 112;
+    padding:12px;
+    box-sizing: border-box;
+    color:#fff;
+    box-shadow:0 0 16px #345f8a inset;
+    border-radius: 4px;
+    overflow: auto;
+    a{
+        position: absolute;
+        right:12px;top:12px;
+        cursor: pointer;
+    }
+    &.show{
+        display: block;
+    }
+}

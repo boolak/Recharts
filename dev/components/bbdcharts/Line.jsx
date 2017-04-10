@@ -67,15 +67,16 @@ const Line = React.createClass({
                 }
             },
             legend:{
-                show:this.props.legend,
+                show:this.props.legend=='hide'?false:true,
                 data:this.props.parms.legend,
                 textStyle:Config.legend.textStyle
             },
             grid: {
-                
+                top:40
             },
             dataZoom: [
                 {
+                    show:this.props.dataZoom=='hide'?false:true,
                     type: 'slider',
                     startValue:0,//this.props.parms.xAxis.length-this.props.start,
                     realtime: true,
@@ -118,7 +119,7 @@ const Line = React.createClass({
                 nameTextStyle:{
                     color:Config.yAxis.nameTextStyle.color
                 },
-                min:80,
+                min:this.props.min || 0,
                 //offset:8,
                 axisLine:Config.yAxis.axisLine,
                 axisLabel:Config.yAxis.axisLabel,

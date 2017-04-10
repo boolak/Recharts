@@ -18,23 +18,23 @@ import Index from './components/index/Index';
 
 //路由
 const Root = React.createClass({
-	render(){
-		const { store, history } = this.props
-		return(
-		  <Provider store={store}>
-	        <div>
-			  <Router history={history}>
-			    <Route path="/" component={App}>
-			      <IndexRoute component={Index} />
-				  <Route path="index" component={Index}/>
-				  {/*<Route path="report" component={Report}/>*/}
-			    </Route>
-			  </Router>
-			  <DevTools />
-		   </div>
-	  	</Provider>
-	  	)
-	}
+    render(){
+        const { store, history } = this.props
+        return(
+          <Provider store={store}>
+            <div>
+              <Router history={history}>
+                <Route path="/" component={App}>
+                  <IndexRoute component={Index} />
+                  <Route path="index" component={Index}/>
+                  {/*<Route path="report" component={Report}/>*/}
+                </Route>
+              </Router>
+              <DevTools />
+           </div>
+        </Provider>
+        )
+    }
 })
 
 module.exports = Root;

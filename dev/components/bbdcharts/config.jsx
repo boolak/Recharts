@@ -33,7 +33,7 @@ const Theme = {
             show:false
         },
         nameTextStyle:{
-            color:'#7b7b7b'
+            color:'#7188ad'
         }
     },
     xAxis:{
