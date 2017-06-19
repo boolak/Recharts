@@ -56,7 +56,7 @@ const BarStack = React.createClass({
             xAxis: {
                 name: '',
                 type: this.props.vertical==false?'value':'category',
-                data: this.props.vertical==false?[]:this.props.parms.yAxis,
+                data: this.props.vertical==false?[]:this.props.parms.xAxis,
                 nameTextStyle:{
                     color:Config.yAxis.nameTextStyle.color
                 },
@@ -68,7 +68,7 @@ const BarStack = React.createClass({
             yAxis: {
                 name: '',
                 type: this.props.vertical==false?'category':'value',
-                data: this.props.vertical==false?this.props.parms.yAxis:[],
+                data: this.props.vertical==false?this.props.parms.xAxis:[],
                 nameTextStyle:{
                     color:Config.yAxis.nameTextStyle.color
                 },

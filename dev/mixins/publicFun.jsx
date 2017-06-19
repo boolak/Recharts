@@ -27,7 +27,7 @@ const publicFun = {
 	    }
 	},
 	doAjax:function(parms){
-		var env = 'line';//'dev','line'
+		var env = 'dev';//'dev','line'
 		$.ajax({
 			url: env=='dev'?parms.devUrl:parms.lineUrl,
 			type: parms.type,

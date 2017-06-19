@@ -54,7 +54,7 @@ const Map = React.createClass({
                 padding: [6,10],
                 backgroundColor: 'rgba(0,0,0,.5)',
                 formatter: function(a) {
-                    return '<span style="font-size:12px;">'+a.name+'：投诉'+a.value[2].split(',')[0]+'，举报'+a.value[2].split(',')[1]+'</span>';
+                    //return '<span style="font-size:12px;">'+a.name+'：投诉'+a.value[2].split(',')[0]+'，举报'+a.value[2].split(',')[1]+'</span>';
                     //console.log(a);
                 }
             },
@@ -109,11 +109,11 @@ const Map = React.createClass({
                 },
                 itemStyle:{
                     normal:{
-                        color:'#3D5178',
-                        borderColor:'#4687CF'
+                        color: this.props.itemColor || '#437769',
+                        borderColor:'#fff'
                     },
                     emphasis: {
-                        color: '#4c8afc'
+                        color: '#2A303A'
                     }
                 }
             },
@@ -124,12 +124,11 @@ const Map = React.createClass({
                     coordinateSystem: 'geo',
                     symbolSize:(val)=>{
                         //console.log(val);
-                        var value = val[2].split(',')[0]+val[2].split(',')[1];
-                        return value>160?value/1200:value/10;
+                        return Math.max(val[2] / 100, 6);
                     },
                     itemStyle:{
                         normal:{
-                            color: '#D8C33E',
+                            color: this.props.scatterColor || '#FFAD75',
                             shadowBlur: 10,
                             shadowColor: '#3ea'
                         }

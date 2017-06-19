@@ -9,7 +9,7 @@ new WebpackDevServer(webpack(config), {
 	historyApiFallback: true,
 	inline: true,
 	progress: true
-}).listen(4000, '127.0.0.1', function(err, result) {
+}).listen(4200, '127.0.0.1', function(err, result) {
 	if (err) {
 		return console.log(err);
 	}

@@ -96,7 +96,7 @@ const Map = React.createClass({
                             areaColor: opt.itemEmphasisColor || '#9cdabf'
                         }
                     },
-                    data: this.props.option.data
+                    data: this.props.parms
                 }
             ]
         };

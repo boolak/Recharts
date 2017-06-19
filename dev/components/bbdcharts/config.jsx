@@ -1,7 +1,15 @@
+/*放大后的配置*/
+const xColor = '#5F7292'
+const yColor = xColor;
+const textColor = '#B3B3B3';
+const fontSize = 12;
+
 const Theme = {
+    fontSize:fontSize,
     legend:{
         textStyle:{
-            color:'#7188ad'
+            color:textColor,
+            fontSize:fontSize
         }
     },
     title:{
@@ -12,18 +20,26 @@ const Theme = {
         },
         padding:17
     },
+    series:{
+        label:{
+            textStyle:{
+                fontSize:fontSize
+            }
+        }
+    },
     yAxis:{
         axisLine:{
             show:true,
             lineStyle:{
-                color:'#5F7292',
+                color:yColor,
                 width:1,
                 type:'solid'
             }
         },
         axisLabel:{
             textStyle:{
-                color:'#7188ad'
+                color:textColor,
+                fontSize:fontSize
             }
         },
         axisTick:{
@@ -33,21 +49,23 @@ const Theme = {
             show:false
         },
         nameTextStyle:{
-            color:'#7188ad'
+            color:textColor,
+            fontSize:fontSize
         }
     },
     xAxis:{
         axisLine:{
             show:true,
             lineStyle:{
-                color:'#5F7292',
+                color:xColor,
                 width:1,
                 type:'solid'
             }
         },
         axisLabel:{
             textStyle:{
-                color:'#7188ad'
+                color:textColor,
+                fontSize:fontSize
             }
         },
         axisTick:{
@@ -57,7 +75,8 @@ const Theme = {
             show:false
         },
         nameTextStyle:{
-            color:'#7b7b7b'
+            color:textColor,
+            fontSize:fontSize
         }
     }
 }

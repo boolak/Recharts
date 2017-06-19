@@ -1,13 +1,12 @@
 import React from 'react';
 import BarGroup from '../../bbdcharts/BarGroup';
-import DetBtn from '../../common/DetBtn';
 
 class EgBarGroup extends React.Component {
     constructor(props) {
         super(props);
         this.displayName = 'EgBarGroup';
         this.state = {
-            barGroupData:{
+            parmData:{
                 legend:['北京','上海','深圳','香港'],
                 series:[
                     [65, 98, 25],
@@ -25,14 +24,14 @@ class EgBarGroup extends React.Component {
         setFullScreen('BarGroup');
     }
     render() {
-        let barGroupData = {
+        let propsData = {
             style:{'width':'100%','height':'300px'},
-            parms:this.state.barGroupData,
+            parms:this.state.parmData,
             barWidth:'36%'
         }
         return <div>
             <div className='det-btn' onClick={this.detPop.bind(this)}>How to use</div>
-            <BarGroup {...barGroupData}/>
+            <BarGroup {...propsData}/>
         </div>;
     }
 }

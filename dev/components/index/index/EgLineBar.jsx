@@ -7,7 +7,7 @@ class EgLineBar extends React.Component {
         super(props);
         this.displayName = 'EgLineBar';
         this.state = {
-            lineBarData:{
+            parmData:{
                 "xAxis": [
                    "2016-05", "2016-06", "2016-07", "2016-08", "2016-09", "2016-10", "2016-11", "2016-12"
                 ],
@@ -39,18 +39,18 @@ class EgLineBar extends React.Component {
         setFullScreen('linebar');
     }
     render() {
-        let lineBarData = {
+        let propsData = {
             style:{'width':'100%','height':'300px'},
-            parms:this.state.lineBarData,
+            parms:this.state.parmData,
             //title:'TITLE',//可以不写
             barWidth:12,
             grid:{top:80,bottom:30},
-            color:['#37649A','#37AA8D'],
-            type:['bar','line']//代表柱状，线条;先后顺序与series相对应
+            color:['#37649A','#37649A','#37AA8D','#37AA8D'],
+            type:['bar','line','bar','line']//代表柱状，线条;先后顺序与series相对应
         }
         return <div>
             <div className='det-btn' onClick={this.detPop.bind(this)}>How to use</div>
-            <LineBar {...lineBarData}/>
+            <LineBar {...propsData}/>
         </div>;
     }
 }

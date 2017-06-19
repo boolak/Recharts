@@ -61,7 +61,7 @@ const Rader = React.createClass({
                 radarIndex:i,
                 areaStyle: {
                     normal:{
-                        color:'#5bd29e'
+                        color:this.props.areaStyleColor||'#5bd29e'
                     }
                 },
                 /*label:{
@@ -77,8 +77,8 @@ const Rader = React.createClass({
     },
     getRadar:function(){
         var baseData = {
-            'center':['50%','50%'],
-            'radius':'50%',
+            'center': this.props.center||['50%','50%'],
+            'radius': this.props.radius||'70%',
             /*'name':{
                 formatter:(parms,indicator)=>{
                     
@@ -92,7 +92,7 @@ const Rader = React.createClass({
         const option = {
             color:this.props.color,
             title: {
-                text: this.props.title,
+                text: this.props.title||'',
                 textStyle:Config.title.textStyle,
                 padding:Config.title.padding
             },

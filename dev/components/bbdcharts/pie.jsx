@@ -25,14 +25,14 @@ const Pie = React.createClass({
                 trigger: 'item',
                 //formatter: "{b} : {c}%"
                 formatter:(parms)=>{
-                    //console.log(parms);
+                    // console.log(parms);
                     var style = 'color:'+parms.color+';font-size:16px;font-weight:bold';
-                    var html = '<div>'+parms.name+'：<span style="'+style+'">'+parms.value+'%</span></div>';
+                    var html = '<div>'+parms.name+'：<span style="'+style+'">'+parms.percent+'%</span></div>';
                     return html;
                 }
             },
             legend:{
-                show:false,
+                show:this.props.legend,
                 orient: 'horizontal',
                 left: 'center',
                 top:'10%',
@@ -47,10 +47,10 @@ const Pie = React.createClass({
             },
             series : [
                 {
-                    name: this.props.title,
+                    name: this.props.title||'',
                     type: 'pie',
                     roseType: this.props.roseType,
-                    radius : this.props.radius||['26','66'],
+                    radius : this.props.radius||['30','60'],
                     center: this.props.center||['50%', '50%'],
                     data:this.props.parms.series,
                     label:{
@@ -58,7 +58,7 @@ const Pie = React.createClass({
                             textStyle:{
                                 color:'#ccc'
                             },
-                            formatter:'{b} : {c}%'
+                            formatter:'{b} : {c}'
                         }
                     },
                     itemStyle: {

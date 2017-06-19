@@ -14,7 +14,12 @@
         }
     }
 }
-
+.tips{
+    color:#999;
+    padding-left:10px;
+    padding-bottom:10px;
+    letter-spacing:1px;
+}
 .det-btn{
     position:absolute;
     right:0;
@@ -44,7 +49,6 @@
     color:#fff;
     box-shadow:0 0 16px #345f8a inset;
     border-radius: 4px;
-    overflow: auto;
     a{
         position: absolute;
         right:12px;top:12px;
@@ -52,5 +56,12 @@
     }
     &.show{
         display: block;
+    }
+    h3{
+        padding-bottom:10px;
+    }
+    #coder{
+        height:546px;
+        overflow: auto;
     }
 }

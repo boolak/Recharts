@@ -1,39 +1,54 @@
+<pre style="max-width: 100%;"><code class="javascript hljs" codemark="1"><span class="hljs-keyword">import</span> React <span class="hljs-keyword">from</span> <span class="hljs-string">'react'</span>;
+<span class="hljs-keyword">import</span> LineBar <span class="hljs-keyword">from</span> <span class="hljs-string">'../../bbdcharts/LineBar'</span>;
 
-<pre style="max-width: 100%;"><code class="javascript hljs" codemark="1"><span class="hljs-keyword">this</span>.state = {
-        lineBarData:{
-            <span class="hljs-string">"xAxis"</span>: [
-               <span class="hljs-string">"2016-05"</span>, <span class="hljs-string">"2016-06"</span>, <span class="hljs-string">"2016-07"</span>, <span class="hljs-string">"2016-08"</span>, <span class="hljs-string">"2016-09"</span>, <span class="hljs-string">"2016-10"</span>, <span class="hljs-string">"2016-11"</span>, <span class="hljs-string">"2016-12"</span>
-            ],
-            <span class="hljs-string">"yAxis"</span>: [
-               <span class="hljs-string">"增加值(亿元)"</span>,<span class="hljs-string">"同比增长率(%)"</span>
-            ],
-            <span class="hljs-string">"legend"</span>: [
-               <span class="hljs-string">"A增加值"</span>,<span class="hljs-string">"A同比增长率(%)"</span>,<span class="hljs-string">"B增加值"</span>,<span class="hljs-string">"B同比增长率(%)"</span>
-            ],
-            <span class="hljs-string">"series"</span>: [
-               [
-                   <span class="hljs-number">313.89</span>, <span class="hljs-number">384.95</span>, <span class="hljs-number">447.2</span>, <span class="hljs-number">511.34</span>, <span class="hljs-number">578.3</span>, <span class="hljs-number">638.03</span>, <span class="hljs-number">715.14</span>, <span class="hljs-number">780.82</span>
-               ],
-               [
-                   <span class="hljs-number">9.7</span>, <span class="hljs-number">9.6</span>, <span class="hljs-number">9.8</span>, <span class="hljs-number">10</span>, <span class="hljs-number">9.9</span>, <span class="hljs-number">9.9</span>, <span class="hljs-number">9.9</span>, <span class="hljs-number">9.9</span>
-               ],
-               [
-                   <span class="hljs-number">213.89</span>, <span class="hljs-number">284.95</span>, <span class="hljs-number">347.2</span>, <span class="hljs-number">411.34</span>, <span class="hljs-number">478.3</span>, <span class="hljs-number">538.03</span>, <span class="hljs-number">615.14</span>, <span class="hljs-number">680.82</span>
-               ],
-               [
-                   <span class="hljs-number">8.7</span>, <span class="hljs-number">8.6</span>, <span class="hljs-number">8.8</span>, <span class="hljs-number">9</span>, <span class="hljs-number">8.9</span>, <span class="hljs-number">8.9</span>, <span class="hljs-number">8.9</span>, <span class="hljs-number">8.9</span>
+<span class="hljs-comment">//折线柱状</span>
+<span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">EgLineBar</span> <span class="hljs-keyword">extends</span> <span class="hljs-title">React</span>.<span class="hljs-title">Component</span> </span>{
+    <span class="hljs-keyword">constructor</span>(props) {
+        <span class="hljs-keyword">super</span>(props);
+        <span class="hljs-keyword">this</span>.displayName = <span class="hljs-string">'EgLineBar'</span>;
+        <span class="hljs-keyword">this</span>.state = {
+            parmData:{
+                <span class="hljs-string">"xAxis"</span>: [
+                   <span class="hljs-string">"2016-05"</span>, <span class="hljs-string">"2016-06"</span>, <span class="hljs-string">"2016-07"</span>, <span class="hljs-string">"2016-08"</span>, <span class="hljs-string">"2016-09"</span>, <span class="hljs-string">"2016-10"</span>, <span class="hljs-string">"2016-11"</span>, <span class="hljs-string">"2016-12"</span>
+                ],
+                <span class="hljs-string">"yAxis"</span>: [
+                   <span class="hljs-string">"增加值(亿元)"</span>,<span class="hljs-string">"同比增长率(%)"</span>
+                ],
+                <span class="hljs-string">"legend"</span>: [
+                   <span class="hljs-string">"A增加值"</span>,<span class="hljs-string">"A同比增长率(%)"</span>,<span class="hljs-string">"B增加值"</span>,<span class="hljs-string">"B同比增长率(%)"</span>
+                ],
+                <span class="hljs-string">"series"</span>: [
+                   [
+                       <span class="hljs-number">313.89</span>, <span class="hljs-number">384.95</span>, <span class="hljs-number">447.2</span>, <span class="hljs-number">511.34</span>, <span class="hljs-number">578.3</span>, <span class="hljs-number">638.03</span>, <span class="hljs-number">715.14</span>, <span class="hljs-number">780.82</span>
+                   ],
+                   [
+                       <span class="hljs-number">9.7</span>, <span class="hljs-number">9.6</span>, <span class="hljs-number">9.8</span>, <span class="hljs-number">10</span>, <span class="hljs-number">9.9</span>, <span class="hljs-number">9.9</span>, <span class="hljs-number">9.9</span>, <span class="hljs-number">9.9</span>
+                   ],
+                   [
+                       <span class="hljs-number">213.89</span>, <span class="hljs-number">284.95</span>, <span class="hljs-number">347.2</span>, <span class="hljs-number">411.34</span>, <span class="hljs-number">478.3</span>, <span class="hljs-number">538.03</span>, <span class="hljs-number">615.14</span>, <span class="hljs-number">680.82</span>
+                   ],
+                   [
+                       <span class="hljs-number">8.7</span>, <span class="hljs-number">8.6</span>, <span class="hljs-number">8.8</span>, <span class="hljs-number">9</span>, <span class="hljs-number">8.9</span>, <span class="hljs-number">8.9</span>, <span class="hljs-number">8.9</span>, <span class="hljs-number">8.9</span>
+                   ]
                ]
-           ]
+            }
         }
-    }</code>
-    <code class="javascript hljs" codemark="1"><span class="hljs-keyword">let</span> lineBarData = {
-        style:{<span class="hljs-string">'width'</span>:<span class="hljs-string">'100%'</span>,<span class="hljs-string">'height'</span>:<span class="hljs-string">'300px'</span>},
-        parms:<span class="hljs-keyword">this</span>.state.lineBarData,
-        title:<span class="hljs-string">'TITLE'</span>,
-        barWidth:<span class="hljs-number">12</span>,
-        grid:{top:<span class="hljs-number">80</span>,bottom:<span class="hljs-number">30</span>},
-        color:[<span class="hljs-string">'#37649A'</span>,<span class="hljs-string">'#37AA8D'</span>],
-        type:[<span class="hljs-string">'bar'</span>,<span class="hljs-string">'line'</span>]<span class="hljs-comment">//代表柱状，线条;先后顺序与series相对应</span>
-    }</code>
-    <code class="javascript hljs" codemark="1"> &lt;LineBar {...lineBarData}/&gt;</code>
-</pre>
+    }
+    render() {
+        <span class="hljs-keyword">let</span> propsData = {
+            style:{<span class="hljs-string">'width'</span>:<span class="hljs-string">'100%'</span>,<span class="hljs-string">'height'</span>:<span class="hljs-string">'300px'</span>},
+            parms:<span class="hljs-keyword">this</span>.state.parmData,
+            <span class="hljs-comment">//title:'TITLE',//可以不写</span>
+            barWidth:<span class="hljs-number">12</span>,
+            grid:{top:<span class="hljs-number">80</span>,bottom:<span class="hljs-number">30</span>},
+            color:[<span class="hljs-string">'#37649A'</span>,<span class="hljs-string">'#37649A'</span>,<span class="hljs-string">'#37AA8D'</span>,<span class="hljs-string">'#37AA8D'</span>],
+            type:[<span class="hljs-string">'bar'</span>,<span class="hljs-string">'line'</span>,<span class="hljs-string">'bar'</span>,<span class="hljs-string">'line'</span>]<span class="hljs-comment">//代表柱状，线条;先后顺序与series相对应</span>
+        }
+        <span class="hljs-keyword">return</span> <span class="xml"><span class="hljs-tag">&lt;<span class="hljs-name">div</span>&gt;</span>
+            <span class="hljs-tag">&lt;<span class="hljs-name">LineBar</span> {<span class="hljs-attr">...propsData</span>}/&gt;</span>
+        <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>;
+    }
+}
+
+export default EgLineBar;
+</span></code></pre>

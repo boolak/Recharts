@@ -92,6 +92,27 @@ const Bar = React.createClass({
                     }
                 }
             },
+            dataZoom:[{
+                show:this.props.dataZoom.show === 'hide'?false:true,
+                type: 'slider',
+                startValue:0,//this.props.parms.xAxis.length-this.props.start,
+                realtime: true,
+                bottom:0,
+                borderColor:this.props.dataZoom.borderColor,
+                fillerColor:this.props.dataZoom.fillerColor,
+                backgroundColor:this.props.dataZoom.backgroundColor,
+                handleStyle:{
+                    color:this.props.dataZoom.handleColor
+                },
+                textStyle:{
+                    color:'#fff'
+                },
+                dataBackground:{
+                    areaStyle:{
+                        color:'#3D625C'
+                    }
+                }
+            }],
             legend:{
                 data:this.props.parms.legend,
                 textStyle:Config.legend.textStyle

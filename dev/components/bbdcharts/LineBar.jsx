@@ -18,16 +18,18 @@ const LineBar = React.createClass({
                         position: 'top'
                     }
                 },
-                type:this.props.type[i%2],
+                //type:this.props.type[i%2],
+                type:this.props.type[i],
                 barWidth:this.props.barWidth||36,
                 data:this.props.parms.series[i],
                 itemStyle:{
                     normal:{
-                        color:this.props.color[this.props.parms.legend.length==2?i:Math.floor(i/2)]
+                        //color:this.props.color[this.props.parms.legend.length==2?i:Math.floor(i/2)]
+                        color:this.props.color[i]
                     }
                 }
             }
-            if(i%2===1){
+            if(this.props.type[i]==='line'){
                 base.yAxisIndex = 1;
             }
             series.push(base);

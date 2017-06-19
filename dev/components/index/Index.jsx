@@ -18,6 +18,14 @@ import EgLine from './index/EgLine';
 import EgLineBar from './index/EgLineBar';
 import EgBarStack from './index/EgBarStack';
 import EgBarGroup from './index/EgBarGroup';
+import EgPie from './index/EgPie';
+import EgRader from './index/EgRader';
+import EgScatter from './index/EgScatter';
+import EgMapCat from './index/EgMapCat';
+import EgMapHot from './index/EgMapHot';
+import EgMapLine from './index/EgMapLine';
+import EgPieNest from './index/EgPieNest';
+
 
 /*首页*/
 const Index = React.createClass({
@@ -30,15 +38,25 @@ const Index = React.createClass({
             <div className="index">
                 <DetPop {...this.props}/>
                 <Header/>
+                <pre className='tips'>
+                    提示：<br/>
+                    this.state 把这个数据定义在react的状态state里面,该数据代表渲染图标所需要的数据（其实后端返回来的数据格式就可以这样定义）。<br/>
+                    propsData 该变量定义该图表所需配置的各种参数（可以看到其中的选项parms的值就是取的状态state的值）。<br/>
+                    <code>&lt;Bar ...propsData/&gt; 最后在render中渲染该图表组件。</code>
+                </pre>
                 <ul className='charts'>
                     <li><EgBar {...this.props}/></li>
                     <li><EgLine {...this.props}/></li>
                     <li><EgLineBar {...this.props}/></li>
                     <li><EgBarStack {...this.props}/></li>
                     <li><EgBarGroup {...this.props}/></li>
-                    <li></li>
-                    <li></li>
-                    <li></li>
+                    <li><EgPie {...this.props}/></li>
+                    <li><EgRader {...this.props}/></li>
+                    <li><EgScatter {...this.props}/></li>
+                    <li><EgMapCat {...this.props}/></li>
+                    <li><EgMapHot {...this.props}/></li>
+                    <li><EgMapLine {...this.props}/></li>
+                    <li><EgPieNest {...this.props}/></li>
                 </ul>
             </div>
         );

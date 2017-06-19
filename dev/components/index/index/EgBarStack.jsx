@@ -7,7 +7,7 @@ class EgBarStack extends React.Component {
         super(props);
         this.displayName = 'EgBarStack';
         this.state = {
-            barParm:{
+            parmData:{
                 legend:['A','B','C','D'],
                 series:[
                         {
@@ -53,7 +53,7 @@ class EgBarStack extends React.Component {
                         }
                     
                 ],
-                yAxis:['2014','2015','2016']
+                xAxis:['2014','2015','2016']
             }
         }
     }
@@ -62,16 +62,16 @@ class EgBarStack extends React.Component {
         setFullScreen('BarStack');
     }
     render() {
-        let barData = {
+        let propsData = {
             style:{width:'100%',height:'300px'},
-            parms:this.state.barParm,
+            parms:this.state.parmData,
             color:['#1A8AEA','#02CBCC','#A373EC','#BA9FE3'],
             barWidth:28,
             //vertical:false//不写，代表默认纵向
         }
         return <div>
             <div className='det-btn' onClick={this.detPop.bind(this)}>How to use</div>
-            <BarStack {...barData}/>
+            <BarStack {...propsData}/>
         </div>;
     }
 }
