@@ -17,29 +17,31 @@ const Bar = React.createClass({
     propTypes: {
     },
     getSeries:function(series){
+        const {parms, labelShow, labelPosition, barWidth} = this.props;
         var seriesData = [];
-        this.props.parms.legend.forEach(function(val,i){
+        parms.legend.forEach(function(val,i){
             var baseData = {
                 name:val,
                 type:'bar',
                 label: {
                     normal: {
-                        show: this.props.labelShow,
-                        position: this.props.labelPosition || 'right'
+                        show: labelShow,
+                        position: labelPosition || 'right'
                     }
                 },
-                barWidth:this.props.barWidth||6,
-                data:this.props.parms.series[i]
+                barWidth:barWidth||6,
+                data:parms.series[i]
             };
             seriesData.push(baseData);
         }.bind(this));
         return seriesData;
     },
     getxAxis:function(){
-        if(this.props.vertical || this.props.vertical==undefined){
+        const {vertical, parms} = this.props;
+        if(vertical || vertical==undefined){
             return {
                 type : 'category',
-                data : this.props.parms.xAxis,
+                data : parms.xAxis,
                 axisLine:Config.xAxis.axisLine,
                 axisLabel:Config.xAxis.axisLabel,
                 axisTick:Config.xAxis.axisTick,
@@ -56,7 +58,8 @@ const Bar = React.createClass({
         }
     },
     getyAxis:function(){
-        if(this.props.vertical || this.props.vertical==undefined){
+        const {vertical, parms} = this.props;
+        if(vertical || vertical==undefined){
             return {
                 type : 'value',
                 axisLine:Config.yAxis.axisLine,
@@ -67,7 +70,7 @@ const Bar = React.createClass({
         }else{
             return {
                 type : 'category',
-                data : this.props.parms.xAxis,
+                data : parms.xAxis,
                 axisLine:Config.yAxis.axisLine,
                 axisLabel:Config.yAxis.axisLabel,
                 axisTick:Config.yAxis.axisTick,
@@ -76,13 +79,14 @@ const Bar = React.createClass({
         }
     },
     getOption:function(){
+        const {style, parms, title, dataZoom, barWidth, color, grid} = this.props;
         const option = {
             title:{
-                text:this.props.title,
+                text:title || ' ',
                 textStyle:Config.title.textStyle,
                 padding:Config.title.padding
             },
-            color: this.props.color,
+            color: color,
             tooltip : {
                 trigger: 'axis',
                 axisPointer : {            // 坐标轴指示器，坐标轴触发有效
@@ -93,16 +97,16 @@ const Bar = React.createClass({
                 }
             },
             dataZoom:[{
-                show:this.props.dataZoom.show === 'hide'?false:true,
+                show:dataZoom.show === 'hide'?false:true,
                 type: 'slider',
-                startValue:0,//this.props.parms.xAxis.length-this.props.start,
+                startValue: dataZoom.start ? parms.xAxis.length-dataZoom.start : 0,
                 realtime: true,
                 bottom:0,
-                borderColor:this.props.dataZoom.borderColor,
-                fillerColor:this.props.dataZoom.fillerColor,
-                backgroundColor:this.props.dataZoom.backgroundColor,
+                borderColor:dataZoom.borderColor,
+                fillerColor:dataZoom.fillerColor,
+                backgroundColor:dataZoom.backgroundColor,
                 handleStyle:{
-                    color:this.props.dataZoom.handleColor
+                    color:dataZoom.handleColor
                 },
                 textStyle:{
                     color:'#fff'
@@ -114,10 +118,10 @@ const Bar = React.createClass({
                 }
             }],
             legend:{
-                data:this.props.parms.legend,
+                data:parms.legend,
                 textStyle:Config.legend.textStyle
             },
-            grid: {
+            grid:Object.assign({}, grid, {containLabel: true}) || {
                 left: '1%',
                 right: '4%',
                 bottom: '1%',

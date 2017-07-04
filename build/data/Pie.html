@@ -1,0 +1,47 @@
+<pre style="max-width: 100%;"><code class="javascript hljs" codemark="1"><span class="hljs-keyword">import</span> React <span class="hljs-keyword">from</span> <span class="hljs-string">'react'</span>;
+<span class="hljs-keyword">import</span> Pie <span class="hljs-keyword">from</span> <span class="hljs-string">'../../bbdcharts/Pie'</span>;
+
+
+<span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">EgPie</span> <span class="hljs-keyword">extends</span> <span class="hljs-title">React</span>.<span class="hljs-title">Component</span> </span>{
+    <span class="hljs-keyword">constructor</span>(props) {
+        <span class="hljs-keyword">super</span>(props);
+        <span class="hljs-keyword">this</span>.displayName = <span class="hljs-string">'EgPie'</span>;
+        <span class="hljs-keyword">this</span>.state = {
+            parmData:{
+                legend:[<span class="hljs-string">'第一产业'</span>,<span class="hljs-string">'第二产业'</span>,<span class="hljs-string">'第三产业'</span>],
+                series:[
+                    {
+                        name:<span class="hljs-string">'第一产业'</span>,
+                        value:<span class="hljs-number">18</span>
+                    },
+                    {
+                        name:<span class="hljs-string">'第二产业'</span>,
+                        value:<span class="hljs-number">22</span>
+                    },
+                    {
+                        name:<span class="hljs-string">'第三产业'</span>,
+                        value:<span class="hljs-number">32</span>
+                    }
+                ]
+            }
+        }
+    }
+    render() {
+        <span class="hljs-keyword">let</span> propsData = {
+            style:{<span class="hljs-string">'width'</span>:<span class="hljs-string">'100%'</span>,<span class="hljs-string">'height'</span>:<span class="hljs-string">'300px'</span>},
+            parms:<span class="hljs-keyword">this</span>.state.parmData,
+            color:[<span class="hljs-string">'#dfa'</span>,<span class="hljs-string">'#fa3'</span>,<span class="hljs-string">'#aec'</span>],
+            radius:[<span class="hljs-number">40</span>,<span class="hljs-number">80</span>],<span class="hljs-comment">//不写默认为[30,60]</span>
+            roseType:<span class="hljs-literal">true</span>,<span class="hljs-comment">//代表玫瑰图，默认环状</span>
+            legend:<span class="hljs-literal">false</span>,<span class="hljs-comment">//是否显示分类</span>
+            <span class="hljs-comment">//title:'标题',//不写默认为空</span>
+            <span class="hljs-comment">//center:['50%','55%'],// 不写默认居中</span>
+        }
+        <span class="hljs-keyword">return</span> <span class="xml"><span class="hljs-tag">&lt;<span class="hljs-name">div</span>&gt;</span>
+            <span class="hljs-tag">&lt;<span class="hljs-name">Pie</span> {<span class="hljs-attr">...propsData</span>}/&gt;</span>
+        <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>;
+    }
+}
+
+export default EgPie;
+</span></code></pre>

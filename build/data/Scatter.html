@@ -1,0 +1,52 @@
+<pre style="max-width: 100%;"><code class="javascript hljs" codemark="1"><span class="hljs-keyword">import</span> React <span class="hljs-keyword">from</span> <span class="hljs-string">'react'</span>;
+<span class="hljs-keyword">import</span> Scatter <span class="hljs-keyword">from</span> <span class="hljs-string">'../../bbdcharts/Scatter'</span>;
+
+
+<span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">EgScatter</span> <span class="hljs-keyword">extends</span> <span class="hljs-title">React</span>.<span class="hljs-title">Component</span> </span>{
+    <span class="hljs-keyword">constructor</span>(props) {
+        <span class="hljs-keyword">super</span>(props);
+        <span class="hljs-keyword">this</span>.displayName = <span class="hljs-string">'EgScatter'</span>;
+        <span class="hljs-keyword">this</span>.state = {
+            parmData:{
+                legend:[<span class="hljs-string">'进口'</span>,<span class="hljs-string">'出口'</span>],
+                date:[
+                    <span class="hljs-string">'2014-1'</span>,<span class="hljs-string">'2014-2'</span>,<span class="hljs-string">'2014-3'</span>,<span class="hljs-string">'2014-4'</span>,<span class="hljs-string">'2014-5'</span>,<span class="hljs-string">'2014-6'</span>,<span class="hljs-string">'2014-7'</span>,<span class="hljs-string">'2014-8'</span>,<span class="hljs-string">'2014-9'</span>,<span class="hljs-string">'2014-10'</span>,<span class="hljs-string">'2014-11'</span>,<span class="hljs-string">'2014-12'</span>,
+                    <span class="hljs-string">'2015-1'</span>,<span class="hljs-string">'2015-2'</span>
+                ],
+                series:[
+                    [
+                        [<span class="hljs-number">3735.4</span>,<span class="hljs-number">749.2</span>], [<span class="hljs-number">3986.3</span>,<span class="hljs-number">656.2</span>], [<span class="hljs-number">3942.2</span>,<span class="hljs-number">751.3</span>], [<span class="hljs-number">3882.4</span>,<span class="hljs-number">832.9</span>], [<span class="hljs-number">3748.2</span>,<span class="hljs-number">800.6</span>], [<span class="hljs-number">3751.9</span>,<span class="hljs-number">781</span>], [<span class="hljs-number">3766.3</span>,<span class="hljs-number">812.7</span>],
+                        [<span class="hljs-number">3814.7</span>,<span class="hljs-number">827.4</span>], [<span class="hljs-number">5160</span>,<span class="hljs-number">1372.1</span>], [<span class="hljs-number">4682.4</span>,<span class="hljs-number">1148.2</span>], [<span class="hljs-number">3812.2</span>,<span class="hljs-number">910.1</span>], [<span class="hljs-number">4390.5</span>,<span class="hljs-number">1162.2</span>], [<span class="hljs-number">4056.3</span>,<span class="hljs-number">698.4</span>], [<span class="hljs-number">4992.1</span>,<span class="hljs-number">688.2</span>]
+                    ],
+                    [
+                        [<span class="hljs-number">2239.6</span>,<span class="hljs-number">1237.5</span>], [<span class="hljs-number">3241.8</span>,<span class="hljs-number">882.6</span>], [<span class="hljs-number">3316.5</span>,<span class="hljs-number">1068.7</span>], [<span class="hljs-number">2783.7</span>,<span class="hljs-number">1177.3</span>], [<span class="hljs-number">2734.1</span>,<span class="hljs-number">1221.4</span>], [<span class="hljs-number">2718.1</span>,<span class="hljs-number">1178.2</span>], [<span class="hljs-number">2715.3</span>,<span class="hljs-number">1258.8</span>], 
+                        [<span class="hljs-number">2777.4</span>,<span class="hljs-number">1288.3</span>], [<span class="hljs-number">3921.2</span>,<span class="hljs-number">1744.5</span>], [<span class="hljs-number">3357.8</span>,<span class="hljs-number">1521.1</span>], [<span class="hljs-number">3420.6</span>,<span class="hljs-number">1554.6</span>], [<span class="hljs-number">4019.6</span>,<span class="hljs-number">1861.6</span>], [<span class="hljs-number">2489.5</span>,<span class="hljs-number">1056.4</span>], [<span class="hljs-number">3345.7</span>,<span class="hljs-number">1054.7</span>]
+                    ]
+                ]
+            }
+        }
+    }
+    render() {
+        <span class="hljs-keyword">let</span> propsData = {
+            style:{<span class="hljs-string">'width'</span>:<span class="hljs-string">'100%'</span>,<span class="hljs-string">'height'</span>:<span class="hljs-string">'300px'</span>},
+            parms:<span class="hljs-keyword">this</span>.state.parmData,
+            color:[<span class="hljs-string">'#1A8BEB'</span>,<span class="hljs-string">'#61E2E7'</span>],
+            lineIndex:<span class="hljs-number">0</span>,<span class="hljs-comment">//markLine的索引</span>
+            name:{xAxis:<span class="hljs-string">'HHI指数'</span>,yAxis:<span class="hljs-string">'进/出口总额(亿元)'</span>},
+            symbolSize:<span class="hljs-number">40</span>,
+            grid:{
+                left: <span class="hljs-string">'4%'</span>,
+                right: <span class="hljs-string">'14%'</span>,
+                bottom: <span class="hljs-string">'6%'</span>,
+                top:<span class="hljs-string">'14%'</span>,
+                containLabel: <span class="hljs-literal">true</span>
+            }<span class="hljs-comment">//不写使用默认</span>
+        }
+        <span class="hljs-keyword">return</span> <span class="xml"><span class="hljs-tag">&lt;<span class="hljs-name">div</span>&gt;</span>
+            <span class="hljs-tag">&lt;<span class="hljs-name">Scatter</span> {<span class="hljs-attr">...propsData</span>}/&gt;</span>
+        <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>;
+    }
+}
+
+export default EgScatter;
+</span></code></pre>

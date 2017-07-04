@@ -8,16 +8,16 @@ class EgLineBar extends React.Component {
         this.displayName = 'EgLineBar';
         this.state = {
             parmData:{
-                "xAxis": [
+                xAxis: [
                    "2016-05", "2016-06", "2016-07", "2016-08", "2016-09", "2016-10", "2016-11", "2016-12"
                 ],
-                "yAxis": [
+                yAxis: [
                    "增加值(亿元)","同比增长率(%)"
                 ],
-                "legend": [
+                legend: [
                    "A增加值","A同比增长率(%)","B增加值","B同比增长率(%)"
                 ],
-                "series": [
+                series: [
                    [
                        313.89, 384.95, 447.2, 511.34, 578.3, 638.03, 715.14, 780.82
                    ],

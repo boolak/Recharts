@@ -1,0 +1,45 @@
+<pre style="max-width: 100%;"><code class="javascript hljs" codemark="1"><span class="hljs-keyword">import</span> React <span class="hljs-keyword">from</span> <span class="hljs-string">'react'</span>;
+<span class="hljs-keyword">import</span> PieNest <span class="hljs-keyword">from</span> <span class="hljs-string">'../../bbdcharts/PieNest'</span>;
+
+<span class="hljs-comment">//嵌套环形</span>
+<span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">EgPieNest</span> <span class="hljs-keyword">extends</span> <span class="hljs-title">React</span>.<span class="hljs-title">Component</span> </span>{
+    <span class="hljs-keyword">constructor</span>(props) {
+        <span class="hljs-keyword">super</span>(props);
+        <span class="hljs-keyword">this</span>.displayName = <span class="hljs-string">'EgPieNest'</span>;
+        <span class="hljs-keyword">this</span>.state = {
+            parmData:{
+                legend:[<span class="hljs-string">'自然人股东'</span>,<span class="hljs-string">'法人股东'</span>,<span class="hljs-string">'自然人股东'</span>,<span class="hljs-string">'法人股东'</span>],
+                inner:[
+                    {value:<span class="hljs-number">50000</span>, name:<span class="hljs-string">'省外股东'</span>},
+                    {value:<span class="hljs-number">90000</span>, name:<span class="hljs-string">'省内股东'</span>}
+                ],
+                outer:[
+                    {value:<span class="hljs-number">30000</span>, name:<span class="hljs-string">'自然人股东'</span>},
+                    {value:<span class="hljs-number">20000</span>, name:<span class="hljs-string">'法人股东'</span>},
+                    {value:<span class="hljs-number">50000</span>, name:<span class="hljs-string">'自然人股东'</span>},
+                    {value:<span class="hljs-number">40000</span>, name:<span class="hljs-string">'法人股东'</span>}
+                ]
+            }
+        }
+    }
+    render() {
+        <span class="hljs-keyword">this</span>.state.parmData.inner[<span class="hljs-number">0</span>].selected = <span class="hljs-literal">true</span>;
+        <span class="hljs-keyword">let</span> propsData = {
+            style:{<span class="hljs-string">'width'</span>:<span class="hljs-string">'100%'</span>,<span class="hljs-string">'height'</span>:<span class="hljs-string">'300px'</span>},
+            parms:<span class="hljs-keyword">this</span>.state.parmData,
+            color:[<span class="hljs-string">'#22C2FE'</span>,<span class="hljs-string">'#06BBC6'</span>,<span class="hljs-string">'#5CD29E'</span>,<span class="hljs-string">'#FFF5A5'</span>],
+            selectedOffset:<span class="hljs-number">4</span>,
+            title:<span class="hljs-string">'贵阳市股东来源分布'</span>,
+            <span class="hljs-comment">//tooltip:'hide',//默认显示</span>
+            legend:<span class="hljs-string">'hide'</span>,<span class="hljs-comment">//默认显示</span>
+            name:<span class="hljs-string">'股东来源分布'</span>,
+            radius:[[<span class="hljs-number">0</span>,<span class="hljs-string">'40%'</span>],[<span class="hljs-string">'50%'</span>,<span class="hljs-string">'70%'</span>]]
+        }
+        <span class="hljs-keyword">return</span> <span class="xml"><span class="hljs-tag">&lt;<span class="hljs-name">div</span>&gt;</span>
+            <span class="hljs-tag">&lt;<span class="hljs-name">PieNest</span> {<span class="hljs-attr">...propsData</span>}/&gt;</span>
+        <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>;
+    }
+}
+
+export default EgPieNest;
+</span></code></pre>

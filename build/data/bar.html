@@ -1,0 +1,41 @@
+<pre style="max-width: 100%;"><code class="javascript hljs" codemark="1"><span class="hljs-keyword">import</span> React <span class="hljs-keyword">from</span> <span class="hljs-string">'react'</span>;
+<span class="hljs-keyword">import</span> Bar <span class="hljs-keyword">from</span> <span class="hljs-string">'../../bbdcharts/Bar'</span>;
+
+<span class="hljs-comment">/*柱状*/</span>
+<span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">EgBar</span> <span class="hljs-keyword">extends</span> <span class="hljs-title">React</span>.<span class="hljs-title">Component</span> </span>{
+    <span class="hljs-keyword">constructor</span>(props) {
+        <span class="hljs-keyword">super</span>(props);
+        <span class="hljs-keyword">this</span>.displayName = <span class="hljs-string">'EgBar'</span>;
+        <span class="hljs-keyword">this</span>.state = {
+            parmData:{
+                legend:[<span class="hljs-string">'leve1'</span>,<span class="hljs-string">'leve2'</span>],
+                xAxis:[<span class="hljs-string">'A'</span>,<span class="hljs-string">'B'</span>,<span class="hljs-string">'C'</span>,<span class="hljs-string">'D'</span>],
+                series:[[<span class="hljs-number">12</span>,<span class="hljs-number">22</span>,<span class="hljs-number">11</span>,<span class="hljs-number">33</span>],[<span class="hljs-number">21</span>,<span class="hljs-number">12</span>,<span class="hljs-number">12</span>,<span class="hljs-number">21</span>]]
+            }
+        }
+    }
+    render() {
+        <span class="hljs-keyword">let</span> propsData = {
+            style:{<span class="hljs-string">width</span>:<span class="hljs-string">'100%'</span>,<span class="hljs-string">height</span>:<span class="hljs-string">'300px'</span>},
+            parms:<span class="hljs-keyword">this</span>.state.parmData,
+            <span class="hljs-comment">//title:''</span>,
+            dataZoom:{
+                <span class="hljs-string">show</span>:<span class="hljs-string">'hide'</span>,<span class="hljs-comment">//不显示</span>
+                <span class="hljs-comment">//start: 2,// 显示最新（后）的2个，不写默认从开始显示</span>,
+                <span class="hljs-string">borderColor</span>:<span class="hljs-string">'#5ACE9B'</span>,
+                <span class="hljs-string">handleColor</span>:<span class="hljs-string">'#5ACE9B'</span>,
+                <span class="hljs-string">backgroundColor</span>:<span class="hljs-string">'#3C444E'</span>,
+                <span class="hljs-string">fillerColor</span>:<span class="hljs-string">'rgba(83,181,141,.2)'</span><span class="hljs-comment">//选取区域</span>
+            },
+            barWidth:<span class="hljs-number">18</span>,
+            vertical:<span class="hljs-literal">false</span>,<span class="hljs-comment">//排列方式，不写默认为true，代表纵向排列</span>
+            color:[<span class="hljs-string">'#37649a'</span>,<span class="hljs-string">'#3764cc'</span>]
+        }
+        <span class="hljs-keyword">return</span> <span class="xml"><span class="hljs-tag">&lt;<span class="hljs-name">div</span>&gt;</span>
+            <span class="hljs-tag">&lt;<span class="hljs-name">Bar</span> {<span class="hljs-attr">...propsData</span>}/&gt;</span>
+        <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>;
+    }
+}
+
+export default EgBar;
+</span></code></pre>

@@ -1,0 +1,50 @@
+<pre style="max-width: 100%;"><code class="javascript hljs" codemark="1"><span class="hljs-keyword">import</span> React <span class="hljs-keyword">from</span> <span class="hljs-string">'react'</span>;
+<span class="hljs-keyword">import</span> <span class="hljs-built_in">Map</span> <span class="hljs-keyword">from</span> <span class="hljs-string">'../../bbdcharts/Map'</span>;
+
+<span class="hljs-comment">//热力分布地图</span>
+<span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">EgMapHot</span> <span class="hljs-keyword">extends</span> <span class="hljs-title">React</span>.<span class="hljs-title">Component</span> </span>{
+    <span class="hljs-keyword">constructor</span>(props) {
+        <span class="hljs-keyword">super</span>(props);
+        <span class="hljs-keyword">this</span>.displayName = <span class="hljs-string">'EgMapHot'</span>;
+        <span class="hljs-keyword">this</span>.state = {
+            parmData:[
+                {name: <span class="hljs-string">'云岩区'</span>,value: <span class="hljs-string">'82.3'</span> },
+                {name: <span class="hljs-string">'南明区'</span>,value: <span class="hljs-string">'81.5'</span> },
+                {name: <span class="hljs-string">'花溪区'</span>,value: <span class="hljs-string">'87.9'</span> },
+                {name: <span class="hljs-string">'乌当区'</span>,value: <span class="hljs-string">'74.5'</span> },
+                {name: <span class="hljs-string">'白云区'</span>,value: <span class="hljs-string">'80.5'</span> },
+                {name: <span class="hljs-string">'观山湖区'</span>,value: <span class="hljs-string">'80.7'</span> },
+                {name: <span class="hljs-string">'开阳县'</span>,value: <span class="hljs-string">'79.8'</span> },
+                {name: <span class="hljs-string">'息烽县'</span>,value: <span class="hljs-string">'65.4'</span> },
+                {name: <span class="hljs-string">'修文县'</span>,value: <span class="hljs-string">'60.5'</span> },
+                {name: <span class="hljs-string">'清镇市'</span>,value: <span class="hljs-string">'76.8'</span> }
+            ]
+        }
+    }
+    render() {
+        <span class="hljs-keyword">let</span> propsData = {
+            style:{<span class="hljs-string">'width'</span>:<span class="hljs-string">'100%'</span>,<span class="hljs-string">'height'</span>:<span class="hljs-string">'300px'</span>},
+            parms:<span class="hljs-keyword">this</span>.state.parmData,
+            option:{
+                titleText:<span class="hljs-string">'热力分布'</span>,
+                titleShow:<span class="hljs-literal">true</span>,
+                zoom:<span class="hljs-number">1.2</span>,
+                <span class="hljs-comment">/*min:'',
+                max:'',
+                itemWidth:'',
+                itemHeight:'',
+                color:[],//是否显示拖拽用的手柄
+                left:'',*/</span>
+                aspectScale:<span class="hljs-number">1</span>,<span class="hljs-comment">//长宽比</span>
+                labelShow:<span class="hljs-literal">true</span>,
+                itemEmphasisColor:<span class="hljs-string">'#fab'</span><span class="hljs-comment">//高亮颜色</span>
+            }
+        };
+        <span class="hljs-keyword">return</span> <span class="xml"><span class="hljs-tag">&lt;<span class="hljs-name">div</span>&gt;</span>
+            <span class="hljs-tag">&lt;<span class="hljs-name">Map</span> {<span class="hljs-attr">...propsData</span>}/&gt;</span>
+        <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>;
+    }
+}
+
+export default EgMapHot;
+</span></code></pre>

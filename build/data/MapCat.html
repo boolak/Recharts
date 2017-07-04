@@ -1,0 +1,58 @@
+<pre style="max-width: 100%;"><code class="javascript hljs" codemark="1"><span class="hljs-keyword">import</span> React,{PropTypes} <span class="hljs-keyword">from</span> <span class="hljs-string">'react'</span>
+<span class="hljs-keyword">import</span> { browserHistory } <span class="hljs-keyword">from</span> <span class="hljs-string">'react-router'</span>
+<span class="hljs-keyword">import</span> MapCat <span class="hljs-keyword">from</span> <span class="hljs-string">'../../bbdcharts/MapCat'</span>
+
+<span class="hljs-comment">/*散点地图*/</span>
+<span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">EgMapCat</span> <span class="hljs-keyword">extends</span> <span class="hljs-title">React</span>.<span class="hljs-title">Component</span> </span>{
+    <span class="hljs-keyword">constructor</span>(props) {
+        <span class="hljs-keyword">super</span>(props);
+        <span class="hljs-keyword">this</span>.displayName = <span class="hljs-string">'EgMapCat'</span>;
+        <span class="hljs-keyword">this</span>.state = {
+            parmData:{
+                data:[
+                    {<span class="hljs-string">"name"</span>: <span class="hljs-string">"中国电信股份有限公司贵阳分公司"</span>,<span class="hljs-string">"value"</span>: <span class="hljs-string">"381"</span>},
+                    {<span class="hljs-string">"name"</span>: <span class="hljs-string">"中国移动通信集团贵州有限公司贵阳分公司"</span>,<span class="hljs-string">"value"</span>: <span class="hljs-string">"349"</span>},
+                    {<span class="hljs-string">"name"</span>: <span class="hljs-string">"中国联合网络通信有限公司贵阳市分公司"</span>,<span class="hljs-string">"value"</span>: <span class="hljs-string">"578"</span>},
+                    {<span class="hljs-string">"name"</span>: <span class="hljs-string">"贵州省广播电视信息网络股份有限公司贵阳市分公司"</span>,<span class="hljs-string">"value"</span>: <span class="hljs-string">"648"</span>},
+                    {<span class="hljs-string">"name"</span>: <span class="hljs-string">"京东商城"</span>,<span class="hljs-string">"value"</span>: <span class="hljs-string">"581"</span>},
+                    {<span class="hljs-string">"name"</span>: <span class="hljs-string">"家有购物"</span>,<span class="hljs-string">"value"</span>: <span class="hljs-string">"780"</span>},
+                    {<span class="hljs-string">"name"</span>: <span class="hljs-string">"贵阳供电局"</span>,<span class="hljs-string">"value"</span>: <span class="hljs-string">"543"</span>},
+                    {<span class="hljs-string">"name"</span>: <span class="hljs-string">"贵州艾普宽带科技有限公司"</span>,<span class="hljs-string">"value"</span>: <span class="hljs-string">"643"</span>},
+                    {<span class="hljs-string">"name"</span>: <span class="hljs-string">"苏宁电器"</span>,<span class="hljs-string">"value"</span>: <span class="hljs-string">"737"</span>},
+                    {<span class="hljs-string">"name"</span>: <span class="hljs-string">"贵阳长城宽带网络服务有限公司"</span>,<span class="hljs-string">"value"</span>: <span class="hljs-string">"833"</span>},
+                    {<span class="hljs-string">"name"</span>: <span class="hljs-string">"贵阳市供水总公司"</span>,<span class="hljs-string">"value"</span>: <span class="hljs-string">"426"</span>}
+                ],
+                geo:{
+                    <span class="hljs-string">"中国电信股份有限公司贵阳分公司"</span>:[<span class="hljs-number">106.75</span>,<span class="hljs-number">26.63</span>],
+                    <span class="hljs-string">"中国移动通信集团贵州有限公司贵阳分公司"</span>:[<span class="hljs-number">106.75</span>,<span class="hljs-number">26.82</span>],
+                    <span class="hljs-string">"中国联合网络通信有限公司贵阳市分公司"</span>:[<span class="hljs-number">106.86</span>,<span class="hljs-number">27.13</span>],
+                    <span class="hljs-string">"贵州省广播电视信息网络股份有限公司贵阳市分公司"</span>:[<span class="hljs-number">106.24</span>,<span class="hljs-number">26.63</span>],
+                    <span class="hljs-string">"京东商城"</span>:[<span class="hljs-number">106.71</span>,<span class="hljs-number">26.43</span>],
+                    <span class="hljs-string">"家有购物"</span>:[<span class="hljs-number">106.55</span>,<span class="hljs-number">26.93</span>],
+                    <span class="hljs-string">"贵阳供电局"</span>:[<span class="hljs-number">106.75</span>,<span class="hljs-number">27.1</span>],
+                    <span class="hljs-string">"贵州艾普宽带科技有限公司"</span>:[<span class="hljs-number">106.95</span>,<span class="hljs-number">26.81</span>],
+                    <span class="hljs-string">"苏宁电器"</span>:[<span class="hljs-number">106.72</span>,<span class="hljs-number">26.57</span>],
+                    <span class="hljs-string">"贵阳长城宽带网络服务有限公司"</span>:[<span class="hljs-number">106.48</span>,<span class="hljs-number">26.83</span>],
+                    <span class="hljs-string">"贵阳市供水总公司"</span>:[<span class="hljs-number">106.35</span>,<span class="hljs-number">26.63</span>]
+                }
+            }
+        }
+    }
+    render(){
+        <span class="hljs-keyword">let</span> propsData = {
+            style:{height: <span class="hljs-string">'300px'</span>, width: <span class="hljs-string">'100%'</span>},
+            data:<span class="hljs-keyword">this</span>.state.parmData.data,
+            geo:<span class="hljs-keyword">this</span>.state.parmData.geo,
+            title:<span class="hljs-string">'散点分布地图'</span>,<span class="hljs-comment">//不行默认为空,</span>
+            itemColor: <span class="hljs-string">'#21586D'</span>, <span class="hljs-comment">// 地图颜色</span>
+            scatterColor: <span class="hljs-string">'#7ECDF4'</span> <span class="hljs-comment">// 散点颜色</span>
+        }
+        <span class="hljs-keyword">return</span> (
+            <span class="xml"><span class="hljs-tag">&lt;<span class="hljs-name">div</span>&gt;</span>
+                <span class="hljs-tag">&lt;<span class="hljs-name">MapCat</span> <span class="hljs-attr">ref</span>=<span class="hljs-string">'MapCat'</span> {<span class="hljs-attr">...propsData</span>}/&gt;</span>
+            <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+        )
+    }
+}
+
+export default EgMapCat;</span></code></pre>

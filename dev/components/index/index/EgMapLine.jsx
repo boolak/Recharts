@@ -1,0 +1,50 @@
+import React from 'react';
+import MapLine from '../../bbdcharts/MapLine';
+
+//迁徙地图
+class EgMapLine extends React.Component {
+    constructor(props) {
+        super(props);
+        this.displayName = 'EgMapLine';
+        this.state = {
+            parmData:{
+                data:[
+                    {name: '长春',value: 447.6},
+                    {name: '长沙',value: 17.5},
+                    {name: '贵阳',value: 13.6},
+                    {name: '西安',value: 10.0},
+                    {name: '深圳',value: 10.0}
+                ],
+                geo:{
+                    '长春': [125.8154, 44.2584],
+                    '长沙': [113.0823, 28.2568],
+                    '贵阳': [106.6992, 26.7682],
+                    '西安': [109.1162, 34.2004],
+                    '深圳': [114.5435, 22.5439]
+                }
+            }
+        }
+    }
+    detPop(){
+        let {setFullScreen} = this.props;
+        setFullScreen('mapline');
+    }
+    render() {
+        let propsData = {
+            style:{'width':'100%','height':'300px'},
+            parms:this.state.parmData,
+            isOut:false,//向里面
+            source:'贵阳',//目标城市
+            lineColor:'#5ACF9D',
+            mapColor:'#2B323C',
+            lableColor:'#5ACF9D',
+            zoom:1.2
+        }
+        return <div>
+            <div className='det-btn' onClick={this.detPop.bind(this)}>How to use</div>
+            <MapLine ref={(ref)=>{this.chart = ref}} {...propsData}/>
+        </div>;
+    }
+}
+
+export default EgMapLine;

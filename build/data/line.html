@@ -1,0 +1,35 @@
+<pre style="max-width: 100%;"><code class="javascript hljs" codemark="1"><span class="hljs-keyword">import</span> React <span class="hljs-keyword">from</span> <span class="hljs-string">'react'</span>;
+<span class="hljs-keyword">import</span> Line <span class="hljs-keyword">from</span> <span class="hljs-string">'../../bbdcharts/Line'</span>
+<span class="hljs-comment">//import DetBtn from '../../common/DetBtn';</span>
+
+<span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">EgLine</span> <span class="hljs-keyword">extends</span> <span class="hljs-title">React</span>.<span class="hljs-title">Component</span> </span>{
+    <span class="hljs-keyword">constructor</span>(props) {
+        <span class="hljs-keyword">super</span>(props);
+        <span class="hljs-keyword">this</span>.displayName = <span class="hljs-string">'EgLine'</span>;
+        <span class="hljs-keyword">this</span>.state = {
+            parmData:{
+                legend: [<span class="hljs-string">"收入"</span>,<span class="hljs-string">"支出"</span>],
+                xAxis: [<span class="hljs-string">"2010"</span>,<span class="hljs-string">"2011"</span>,<span class="hljs-string">"2012"</span>,<span class="hljs-string">"2013"</span>,<span class="hljs-string">"2014"</span>],
+                series: [
+                    [<span class="hljs-number">17</span>,<span class="hljs-number">19</span>,<span class="hljs-number">33</span>,<span class="hljs-number">39</span>,<span class="hljs-number">43</span>],[<span class="hljs-number">23</span>,<span class="hljs-number">34</span>,<span class="hljs-number">54</span>,<span class="hljs-number">60</span>,<span class="hljs-number">65</span>]
+                ]
+            }
+        }
+    }
+    render() {
+        <span class="hljs-keyword">let</span> propsData = {
+            style:{<span class="hljs-string">'width'</span>:<span class="hljs-string">'100%'</span>,<span class="hljs-string">'height'</span>:<span class="hljs-string">'300px'</span>},
+            parms:<span class="hljs-keyword">this</span>.state.parmData,
+            color:[<span class="hljs-string">'#37649A'</span>,<span class="hljs-string">'#37AA8D'</span>],
+            min:<span class="hljs-number">10</span>,
+            <span class="hljs-comment">//legend:'hide',//不写即为默认显示</span>
+            <span class="hljs-comment">//dataZoom:'hide'//不写即为默认显示</span>
+        }
+        <span class="hljs-keyword">return</span> <span class="xml"><span class="hljs-tag">&lt;<span class="hljs-name">div</span>&gt;</span>
+            <span class="hljs-tag">&lt;<span class="hljs-name">Line</span> {<span class="hljs-attr">...propsData</span>}/&gt;</span>
+        <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>;
+    }
+}
+
+export default EgLine;
+</span></code></pre>

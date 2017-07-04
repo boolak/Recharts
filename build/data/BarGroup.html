@@ -1,0 +1,35 @@
+<pre style="max-width: 100%;"><code class="javascript hljs" codemark="1"><span class="hljs-keyword">import</span> React <span class="hljs-keyword">from</span> <span class="hljs-string">'react'</span>;
+<span class="hljs-keyword">import</span> BarGroup <span class="hljs-keyword">from</span> <span class="hljs-string">'../../bbdcharts/BarGroup'</span>;
+
+<span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">EgBarGroup</span> <span class="hljs-keyword">extends</span> <span class="hljs-title">React</span>.<span class="hljs-title">Component</span> </span>{
+    <span class="hljs-keyword">constructor</span>(props) {
+        <span class="hljs-keyword">super</span>(props);
+        <span class="hljs-keyword">this</span>.displayName = <span class="hljs-string">'EgBarGroup'</span>;
+        <span class="hljs-keyword">this</span>.state = {
+            parmData:{
+                legend:[<span class="hljs-string">'北京'</span>,<span class="hljs-string">'上海'</span>,<span class="hljs-string">'深圳'</span>,<span class="hljs-string">'香港'</span>],
+                series:[
+                    [<span class="hljs-number">65</span>, <span class="hljs-number">98</span>, <span class="hljs-number">25</span>],
+                    [<span class="hljs-number">40</span>, <span class="hljs-number">35</span>, <span class="hljs-number">25</span>],
+                    [<span class="hljs-number">100</span>, <span class="hljs-number">35</span>, <span class="hljs-number">25</span>],
+                    [<span class="hljs-number">40</span>, <span class="hljs-number">35</span>, <span class="hljs-number">25</span>]
+                ],
+                xAxis:[<span class="hljs-string">'2014'</span>,<span class="hljs-string">'2015'</span>,<span class="hljs-string">'2016'</span>],
+                max:<span class="hljs-number">100</span>
+            }
+        }
+    }
+    render() {
+        <span class="hljs-keyword">let</span> propsData = {
+            style:{<span class="hljs-string">'width'</span>:<span class="hljs-string">'100%'</span>,<span class="hljs-string">'height'</span>:<span class="hljs-string">'300px'</span>},
+            parms:<span class="hljs-keyword">this</span>.state.parmData,
+            barWidth:<span class="hljs-string">'36%'</span>
+        }
+        <span class="hljs-keyword">return</span> <span class="xml"><span class="hljs-tag">&lt;<span class="hljs-name">div</span>&gt;</span>
+            <span class="hljs-tag">&lt;<span class="hljs-name">BarGroup</span> {<span class="hljs-attr">...propsData</span>}/&gt;</span>
+        <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>;
+    }
+}
+
+export default EgBarGroup;
+</span></code></pre>
