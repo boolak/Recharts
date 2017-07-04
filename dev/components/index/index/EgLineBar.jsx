@@ -42,11 +42,17 @@ class EgLineBar extends React.Component {
         let propsData = {
             style:{'width':'100%','height':'300px'},
             parms:this.state.parmData,
-            //title:'TITLE',//可以不写
+            //title:'标题',//可以不写
             barWidth:12,
-            grid:{top:80,bottom:30},
+            grid:{top:80,bottom:40, left:20, right:20},//不写使用默认
+            axisLabel:{// 可以不写，此属性永远配合grid.bottom调节显示横轴刻度名称横放显示不完
+              interval:0,
+              rotate:42
+            },
+            labelBarShow: false,// 是否显示柱状label
+            labelLineShow: true,// 是否显示线条label
             color:['#37649A','#37649A','#37AA8D','#37AA8D'],
-            type:['bar','line','bar','line']//代表柱状，线条;先后顺序与series相对应
+            type:['bar','line','bar','line']//代表柱状，线条;先后顺序与series、color相对应
         }
         return <div>
             <div className='det-btn' onClick={this.detPop.bind(this)}>How to use</div>

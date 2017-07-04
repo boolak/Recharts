@@ -40,9 +40,9 @@ const Index = React.createClass({
                 <Header/>
                 <pre className='tips'>
                     提示：<br/>
-                    this.state 把这个数据定义在react的状态state里面,该数据代表渲染图标所需要的数据（其实后端返回来的数据格式就可以这样定义）。<br/>
-                    propsData 该变量定义该图表所需配置的各种参数（可以看到其中的选项parms的值就是取的状态state的值）。<br/>
-                    <code>&lt;Bar ...propsData/&gt; 最后在render中渲染该图表组件。</code>
+                    状态 parmData，该state代表渲染图表所需要的数据（其实后端返回来的数据格式就可以这样定义）。<br/>
+                    属性 propsData，该props定义该图表所需配置的各种参数（可以看到其中的选项parms的值就是取的状态parmData的值）。<br/>
+                    最后在render中渲染该图表组件。
                 </pre>
                 <ul className='charts'>
                     <li><EgBar {...this.props}/></li>

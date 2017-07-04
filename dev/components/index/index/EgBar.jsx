@@ -22,10 +22,11 @@ class EgBar extends React.Component {
         let propsData = {
             style:{width:'100%',height:'300px'},
             parms:this.state.parmData,// 图表渲染所需数据
-            //title:'xxx',
+            title:'标题',
+            //legendShow:'hide',//不写即为默认显示
             dataZoom:{
                 show:'hide',// 不显示
-                //start: 2,// 显示最新（后）的2个，不写默认从开始显示
+                //start: 2,// 显示最新（后）的2个(横轴为值范围)，不写默认从开始显示
                 borderColor:'#5ACE9B',
                 handleColor:'#5ACE9B',
                 backgroundColor:'#3C444E',

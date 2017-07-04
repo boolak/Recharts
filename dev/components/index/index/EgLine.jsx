@@ -25,9 +25,20 @@ class EgLine extends React.Component {
             style:{'width':'100%','height':'300px'},
             parms:this.state.parmData,
             color:['#37649A','#37AA8D'],
-            min:10,
-            //legend:'hide',//不写即为默认显示
-            //dataZoom:'hide'//不写即为默认显示
+            yMin:10,
+            title:'标题',
+            //legendShow:'hide'//不写即为默认显示
+            dataZoom:{
+                //show:'hide',//不写即为默认显示
+                start: 3,// 显示最新（后）的3个，不写默认从开始显示
+                bottom: 10
+            },
+            grid:{
+                top:55,
+                left:20,
+                right:20,
+                bottom:50
+            }
         }
         return <div>
             <div className='det-btn' onClick={this.detPop.bind(this)}>How to use</div>

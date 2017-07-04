@@ -8,28 +8,29 @@ const LineBar = React.createClass({
     propTypes: {
     },
     getSeries:function(){
+        const {parms, type, barWidth, color, labelBarShow, labelLineShow} = this.props;
         var series = [];
-        this.props.parms.legend.forEach(function(val,i){
+        parms.legend.forEach(function(val,i){
             var base = {
-                name:this.props.parms.legend[i],
+                name:parms.legend[i],
                 label: {
                     normal: {
-                        show: false,
+                        show: type[i] === 'line' ? labelLineShow : labelBarShow,
                         position: 'top'
                     }
                 },
-                //type:this.props.type[i%2],
-                type:this.props.type[i],
-                barWidth:this.props.barWidth||36,
-                data:this.props.parms.series[i],
+                //type:type[i%2],
+                type:type[i],
+                barWidth:barWidth||36,
+                data:parms.series[i],
                 itemStyle:{
                     normal:{
-                        //color:this.props.color[this.props.parms.legend.length==2?i:Math.floor(i/2)]
-                        color:this.props.color[i]
+                        //color:color[parms.legend.length==2?i:Math.floor(i/2)]
+                        color:color[i]
                     }
                 }
             }
-            if(this.props.type[i]==='line'){
+            if(type[i]==='line'){
                 base.yAxisIndex = 1;
             }
             series.push(base);
@@ -59,14 +60,18 @@ const LineBar = React.createClass({
         return yAxis;
     },
     getOption:function(){
+        const {title, grid, parms, axisLabel} = this.props;
         const option = {
-            //color:this.props.parms.color,
             title:{
-                text:this.props.title||'',
+                text:title||'',
                 textStyle:Config.title.textStyle,
                 padding:Config.title.padding
             },
-            grid:this.props.grid,
+            grid:grid ? Object.assign({}, grid, {containLabel: true}) : {
+                top:65, bottom:10,
+                left:20, right:20,
+                containLabel: true
+            },
             tooltip: {
                 trigger: 'axis',
                 axisPointer:{
@@ -86,15 +91,15 @@ const LineBar = React.createClass({
                 }
             },
             legend:{
-                data:this.props.parms.legend,
+                data:parms.legend,
                 textStyle:Config.legend.textStyle
             },
             xAxis: [
                 {
                     type: 'category',
-                    data: this.props.parms.xAxis,
+                    data: parms.xAxis,
                     axisLine:Config.xAxis.axisLine,
-                    axisLabel:Config.xAxis.axisLabel,
+                    axisLabel:Object.assign({}, Config.xAxis.axisLabel, axisLabel),
                     axisTick:Config.xAxis.axisTick,
                     splitLine:Config.xAxis.splitLine
                 }

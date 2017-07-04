@@ -47,14 +47,15 @@ const Line = React.createClass({
         }.bind(this));
         return seriesData;
     },
-    getOption:function(parms){
+    getOption:function(){
+        const {title, color, legendShow, parms, dataZoom, yMin, grid} = this.props;
         const option = {
             title:{
-                text:this.props.title,
+                text: title || '',
                 textStyle:Config.title.textStyle,
                 padding:Config.title.padding
             },
-            color:this.props.color||['#00D5C3', '#9B89EF', '#1D86E2', '#BCB34E', '#22AD38',
+            color: color||['#00D5C3', '#9B89EF', '#1D86E2', '#BCB34E', '#22AD38',
                     '#1AA4E2', '#0B4AA9', '#8956A1', '#42D058', '#68D1FF',
                     '#5F93E7', '#ac77c7', '#b5f4bf', '#13d2e4', '#a4c7ff',
                     '#c490c0', '#facd89', '#0ebdce', '#cfe0fc', '#f29c9f'],
@@ -67,20 +68,24 @@ const Line = React.createClass({
                 }
             },
             legend:{
-                show:this.props.legend=='hide'?false:true,
-                data:this.props.parms.legend,
+                show: legendShow=='hide'?false:true,
+                data: parms.legend,
                 textStyle:Config.legend.textStyle
             },
-            grid: {
-                top:40
+            grid: grid ?Object.assign({}, grid, {containLabel: true}) : {
+                top:40,
+                left:20,
+                right:20,
+                bottom:50,
+                containLabel: true
             },
             dataZoom: [
                 {
-                    show:this.props.dataZoom=='hide'?false:true,
+                    show:dataZoom.show=='hide'?false:true,
                     type: 'slider',
-                    startValue:0,//this.props.parms.xAxis.length-this.props.start,
+                    startValue: dataZoom.start ? parms.xAxis.length-dataZoom.start : null, 
                     realtime: true,
-                    bottom:0,
+                    bottom:dataZoom.bottom||0,
                     borderColor:'#213E60',
                     fillerColor:'rgba(255,255,255,0.1)',
                     backgroundColor:'#577B9D',
@@ -108,7 +113,7 @@ const Line = React.createClass({
                     color:Config.yAxis.nameTextStyle.color
                 },
                 boundaryGap: false,
-                data: this.props.parms.xAxis,
+                data:parms.xAxis,
                 axisLine:Config.xAxis.axisLine,
                 axisLabel:Config.xAxis.axisLabel,
                 axisTick:Config.xAxis.axisTick,
@@ -119,7 +124,7 @@ const Line = React.createClass({
                 nameTextStyle:{
                     color:Config.yAxis.nameTextStyle.color
                 },
-                min:this.props.min || 0,
+                min:yMin || 0,
                 //offset:8,
                 axisLine:Config.yAxis.axisLine,
                 axisLabel:Config.yAxis.axisLabel,

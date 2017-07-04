@@ -79,7 +79,7 @@ const Bar = React.createClass({
         }
     },
     getOption:function(){
-        const {style, parms, title, dataZoom, barWidth, color, grid} = this.props;
+        const {style, parms, title, legendShow, dataZoom, barWidth, color, grid} = this.props;
         const option = {
             title:{
                 text:title || ' ',
@@ -99,7 +99,7 @@ const Bar = React.createClass({
             dataZoom:[{
                 show:dataZoom.show === 'hide'?false:true,
                 type: 'slider',
-                startValue: dataZoom.start ? parms.xAxis.length-dataZoom.start : 0,
+                startValue: dataZoom.start ? parms.xAxis.length-dataZoom.start : null,
                 realtime: true,
                 bottom:0,
                 borderColor:dataZoom.borderColor,
@@ -118,6 +118,7 @@ const Bar = React.createClass({
                 }
             }],
             legend:{
+                show: legendShow=='hide'?false:true,
                 data:parms.legend,
                 textStyle:Config.legend.textStyle
             },
