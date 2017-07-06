@@ -17,7 +17,7 @@ const Bar = React.createClass({
     propTypes: {
     },
     getSeries:function(series){
-        const {parms, labelShow, labelPosition, barWidth} = this.props;
+        const {parms, labelShow, labelPosition, barWidth, labelFormatter, vertical} = this.props;
         var seriesData = [];
         parms.legend.forEach(function(val,i){
             var baseData = {
@@ -25,8 +25,17 @@ const Bar = React.createClass({
                 type:'bar',
                 label: {
                     normal: {
-                        show: labelShow,
-                        position: labelPosition || 'right'
+                        show: labelShow == undefined ? true : false,
+                        position: vertical == undefined ? 'top' : 'right',
+                        formatter:(p)=>{
+                            let html = '';
+                            if(labelFormatter){
+                                html = labelFormatter(p);
+                            }else{
+                                html = `${p.value}`;
+                            }
+                            return html;
+                        }
                     }
                 },
                 barWidth:barWidth||6,
@@ -37,13 +46,13 @@ const Bar = React.createClass({
         return seriesData;
     },
     getxAxis:function(){
-        const {vertical, parms} = this.props;
+        const {vertical, parms, axisLabel} = this.props;
         if(vertical || vertical==undefined){
             return {
                 type : 'category',
                 data : parms.xAxis,
                 axisLine:Config.xAxis.axisLine,
-                axisLabel:Config.xAxis.axisLabel,
+                axisLabel:Object.assign({}, Config.xAxis.axisLabel, axisLabel),
                 axisTick:Config.xAxis.axisTick,
                 splitLine:Config.xAxis.splitLine
             }
@@ -58,7 +67,7 @@ const Bar = React.createClass({
         }
     },
     getyAxis:function(){
-        const {vertical, parms} = this.props;
+        const {vertical, parms, axisLabel} = this.props;
         if(vertical || vertical==undefined){
             return {
                 type : 'value',
@@ -72,14 +81,14 @@ const Bar = React.createClass({
                 type : 'category',
                 data : parms.xAxis,
                 axisLine:Config.yAxis.axisLine,
-                axisLabel:Config.yAxis.axisLabel,
+                axisLabel:Object.assign({}, Config.xAxis.axisLabel, axisLabel),
                 axisTick:Config.yAxis.axisTick,
                 splitLine:Config.yAxis.splitLine
             }
         }
     },
     getOption:function(){
-        const {style, parms, title, legendShow, dataZoom, barWidth, color, grid} = this.props;
+        const {style, parms, title, legendShow, dataZoom, barWidth, color, grid, tooltipFormatter} = this.props;
         const option = {
             title:{
                 text:title || ' ',
@@ -94,10 +103,22 @@ const Bar = React.createClass({
                     shadowStyle:{
                         color:'transparent'
                     }
+                },
+                formatter:(p)=>{
+                    let html = '';
+                    if(tooltipFormatter){
+                        html = tooltipFormatter(p);
+                    }else{
+                        html = `${p[0].name}<br/>`;
+                        p.forEach((v, k)=>{
+                            html += `<span style="display:inline-block;border-radius:100%;width:10px;height:10px;background:${v.color}"></span> ${v.seriesName}：${v.value}<br/>`;
+                        });
+                    }
+                    return html;
                 }
             },
             dataZoom:[{
-                show:dataZoom.show === 'hide'?false:true,
+                show:dataZoom.show === undefined?false:true,
                 type: 'slider',
                 startValue: dataZoom.start ? parms.xAxis.length-dataZoom.start : null,
                 realtime: true,
@@ -118,11 +139,11 @@ const Bar = React.createClass({
                 }
             }],
             legend:{
-                show: legendShow=='hide'?false:true,
+                show: legendShow==undefined?true:false,
                 data:parms.legend,
                 textStyle:Config.legend.textStyle
             },
-            grid:Object.assign({}, grid, {containLabel: true}) || {
+            grid:grid ? Object.assign({}, grid, {containLabel: true}) : {
                 left: '1%',
                 right: '4%',
                 bottom: '1%',

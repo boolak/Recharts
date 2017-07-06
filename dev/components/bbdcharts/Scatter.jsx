@@ -10,15 +10,16 @@ class Scatter extends React.Component {
     }
     getSeries(){
         let series = [];
-        this.props.parms.series.forEach((val,i)=>{
+        const {parms, lineIndex, name, symbolSize} = this.props;
+        parms.series.forEach((val,i)=>{
             let base = {
-                name:this.props.parms.legend[i],
+                name:parms.legend[i],
                 type:'scatter',
                 data: val,
                 markLine : {
                     data : [
                         {
-                            xAxis:val[this.props.lineIndex][0],
+                            xAxis:val[lineIndex][0],
                             label:{
                                 normal:{
                                     textStyle:{
@@ -33,7 +34,7 @@ class Scatter extends React.Component {
                             }
                         },
                         {
-                            yAxis:val[this.props.lineIndex][1],
+                            yAxis:val[lineIndex][1],
                             label:{
                                 normal:{
                                     textStyle:{
@@ -54,9 +55,9 @@ class Scatter extends React.Component {
                                 var data = params.data;
                                 var keys = Object.keys(data);
                                 if(keys.indexOf('yAxis')!=-1){
-                                    return this.props.parms.date[this.props.lineIndex]+'\n'+params.seriesName+'：\n'+params.value;
+                                    return parms.date[lineIndex]+'\n'+params.seriesName+'：\n'+params.value;
                                 }else{
-                                    return this.props.parms.date[this.props.lineIndex]+'\n'+this.props.name.xAxis+'：'+params.value;
+                                    return parms.date[lineIndex]+'\n'+name.xAxis+'：'+params.value;
                                 }
                             }
                         }
@@ -75,16 +76,17 @@ class Scatter extends React.Component {
                         opacity:1
                     }
                 },
-                symbolSize:this.props.symbolSize||30
+                symbolSize:symbolSize||30
             }
             series.push(base);
         });
         return series;
     }
-    getOption(parms){
+    getOption(){
+        const {color, grid, parms, name} = this.props;
         const option = {
-            color:this.props.color||['#00D5C3', '#9B89EF', '#1D86E2', '#f29c9f'],
-            grid: this.props.grid||{
+            color:color||['#00D5C3', '#9B89EF', '#1D86E2', '#f29c9f'],
+            grid: grid||{
                 left: '6%',
                 right: '6%',
                 bottom: '6%',
@@ -104,14 +106,14 @@ class Scatter extends React.Component {
             },
             legend: {
                 show:false,
-                data:this.props.parms.legend,
+                data:parms.legend,
                 left: 'right'
             },
             xAxis : [
                 {
                     min:0,
                     //max:10000,
-                    name:this.props.name.xAxis,
+                    name:name.xAxis,
                     type:'value',
                     scale:true,
                     nameTextStyle:Config.xAxis.nameTextStyle,
@@ -123,7 +125,7 @@ class Scatter extends React.Component {
             ],
             yAxis : [
                 {
-                    name:this.props.name.yAxis,
+                    name:name.yAxis,
                     type:'value',
                     scale:true,
                     nameTextStyle:Config.yAxis.nameTextStyle,

@@ -53,56 +53,76 @@ const Rader = React.createClass({
     propTypes: {
     },
     getSeries:function(){
+        const {parms, areaStyleColor, labelShow, labelFormatter} = this.props;
         var seriesData = [];
-        this.props.parms.series.forEach((val,i)=>{
+        parms.series.forEach((val,i)=>{
             var baseData = {
                 type:'radar',
                 data:val,
                 radarIndex:i,
                 areaStyle: {
                     normal:{
-                        color:this.props.areaStyleColor||'#5bd29e'
+                        color:areaStyleColor||'#5bd29e'
                     }
                 },
-                /*label:{
+                label:{
                     normal:{
-                        show:true,
-                        formatter:'{c}(-0.2)',
+                        show:labelShow == undefined ? false:true,
+                        formatter:(p)=>{//'{c}(-0.2)'
+                            let html = '';
+                            if(labelFormatter){
+                                html = labelFormatter(p);
+                            }else{
+                                html = `${p.value}`;
+                            }
+                            return html;
+                        }
                     }
-                }*/
+                }
             }
             seriesData.push(baseData);
         });
         return seriesData;
     },
-    getRadar:function(){
+    getRadar:function(center, radius, parms){
         var baseData = {
-            'center': this.props.center||['50%','50%'],
-            'radius': this.props.radius||'70%',
+            center: center||['50%','50%'],
+            radius: radius||'70%',
             /*'name':{
                 formatter:(parms,indicator)=>{
                     
                 }
             }*/
         };
-        var radar = Object.assign(this.props.parms.radar[0],baseData);
+        var radar = Object.assign(parms.radar[0],baseData);
         return radar;
     },
     getOption:function(){
+        const {color, title, parms, center, radius, toolTipFormatter} = this.props;
         const option = {
-            color:this.props.color,
+            color:color,
             title: {
-                text: this.props.title||'',
+                text: title||'',
                 textStyle:Config.title.textStyle,
                 padding:Config.title.padding
             },
-            tooltip: {},
+            tooltip: {
+                formatter:toolTipFormatter?(p)=>{
+                    return toolTipFormatter(p);
+                } : (p)=>{
+                    let html = `${p.name}<br/>`;
+                    parms.radar[0].indicator.forEach((v, k)=>{
+                        html += `${v.name}：${p.value[k]}<br/>`;
+                    });
+                    return html;
+                }
+            },
             legend: {
-                show:false,
-                data:this.props.parms.legend,
+                show:true,
+                data:parms.legend,
                 textStyle:Config.legend.textStyle
             },
-            radar: this.getRadar(),
+            radar: this.getRadar(center, radius, parms),
             series: this.getSeries(),
             
         };

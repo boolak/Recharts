@@ -67,6 +67,12 @@ class EgBarStack extends React.Component {
             parms:this.state.parmData,
             color:['#1A8AEA','#02CBCC','#A373EC','#BA9FE3'],
             barWidth:28,
+            grid:{
+                left: '4%',
+                right: '4%',
+                bottom: '4%',
+                top:'9%'
+            },
             //vertical:false//不写，代表默认纵向
         }
         return <div>

@@ -16,20 +16,29 @@ const Line = React.createClass({
     propTypes: {
     },
     getSeries:function(series){
+        const {parms, labelShow, smooth, labelFormatter} = this.props;
         var seriesData = [];
-        this.props.parms.legend.forEach(function(val,i){
+        parms.legend.forEach(function(val,i){
             var baseData = {
                 name:val,
                 type:'line',
                 label: {
                     normal: {
-                        show: this.props.label==0?false:true,
-                        position: 'top'
+                        show: labelShow == undefined ? true : false,
+                        position: 'top',
+                        formatter:(p)=>{
+                            if(labelFormatter){
+                                let html = labelFormatter(p);
+                                return html;
+                            }else{
+                                return `${p.value}`;
+                            }
+                        }
                     }
                 },
                 symbol:'circle',
                 symbolSize:6,
-                //smooth:true,
+                smooth: smooth == undefined ? false : true,
                 //stack:'总量',
                 /*areaStyle: {
                     normal: {
@@ -41,14 +50,14 @@ const Line = React.createClass({
                         opacity:'0.4'
                     }
                 },*/
-                data:this.props.parms.series[i]
+                data:parms.series[i]
             };
             seriesData.push(baseData);
         }.bind(this));
         return seriesData;
     },
     getOption:function(){
-        const {title, color, legendShow, parms, dataZoom, yMin, grid} = this.props;
+        const {title, color, legendShow, parms, dataZoom, yMin, grid, axisLabel, tooltipFormatter} = this.props;
         const option = {
             title:{
                 text: title || '',
@@ -65,14 +74,26 @@ const Line = React.createClass({
                     lineStyle:{
                         opacity:0
                     }
+                },
+                formatter:(p)=>{
+                    let html = '';
+                    if(tooltipFormatter){
+                        html = tooltipFormatter(p);
+                    }else{
+                        html = `${p[0].name}<br/>`;
+                        p.forEach((v, k)=>{
+                            html += `<span style="display:inline-block;border-radius:100%;width:10px;height:10px;background:${v.color}"></span> ${v.seriesName}：${v.value}<br/>`;
+                        });
+                    }
+                    return html;
                 }
             },
             legend:{
-                show: legendShow=='hide'?false:true,
+                show: legendShow==undefined?true:false,
                 data: parms.legend,
                 textStyle:Config.legend.textStyle
             },
-            grid: grid ?Object.assign({}, grid, {containLabel: true}) : {
+            grid: grid ? Object.assign({}, grid, {containLabel: true}) : {
                 top:40,
                 left:20,
                 right:20,
@@ -81,7 +102,7 @@ const Line = React.createClass({
             },
             dataZoom: [
                 {
-                    show:dataZoom.show=='hide'?false:true,
+                    show:dataZoom.show==undefined?true:false,
                     type: 'slider',
                     startValue: dataZoom.start ? parms.xAxis.length-dataZoom.start : null, 
                     realtime: true,
@@ -115,7 +136,7 @@ const Line = React.createClass({
                 boundaryGap: false,
                 data:parms.xAxis,
                 axisLine:Config.xAxis.axisLine,
-                axisLabel:Config.xAxis.axisLabel,
+                axisLabel:Object.assign({}, Config.xAxis.axisLabel, axisLabel),
                 axisTick:Config.xAxis.axisTick,
                 splitLine:Config.xAxis.splitLine
             },

@@ -7,8 +7,9 @@ const BarStack = React.createClass({
     propTypes: {
     },
     getSeries:function(){
+        const {parms, vertical, barWidth} = this.props;
         var series = [];
-        this.props.parms.series.forEach(function(val,i){
+        parms.series.forEach(function(val,i){
             var base = {
                 name: val.name,
                 type: 'bar',
@@ -16,15 +17,15 @@ const BarStack = React.createClass({
                 label: {
                     normal: {
                         show: true,
-                        position: 'top',
-                        formatter:i==3||i==7?this.props.parms.series[i].stack:'',
+                        position: vertical === false ? 'right' : 'top',
+                        formatter:i==parms.legend.length-1||i==parms.legend.length*2 -1?parms.series[i].stack:'',
                         textStyle:{
                             color:'#5C709A',
                             fontSize:12
                         }
                     }
                 },
-                barWidth:this.props.barWidth||12,
+                barWidth:barWidth||12,
                 data: val.data
             }
             series.push(base);
@@ -32,6 +33,7 @@ const BarStack = React.createClass({
         return series;
     },
     getOption:function(){
+        const {color, parms, vertical, grid} = this.props;
         const option = {
             tooltip : {
                 /*trigger: 'axis',
@@ -39,24 +41,24 @@ const BarStack = React.createClass({
                     type : 'shadow'        // 默认为直线，可选为：'line' | 'shadow'
                 }*/
             },
-            color:this.props.color,
+            color:color,
             legend: {
-                data: this.props.parms.legend,
+                data: parms.legend,
                 textStyle:Config.legend.textStyle,
                 itemWidth:16,
                 itemHeight:10
             },
-            grid: {
-                right: 12,
-                left: '0%',
-                bottom: '0%',
-                top:12,
+            grid:grid ? Object.assign({}, grid, {containLabel: true}) : {
+                left: '1%',
+                right: '4%',
+                bottom: '1%',
+                top:'9%',
                 containLabel: true
             },
             xAxis: {
                 name: '',
-                type: this.props.vertical==false?'value':'category',
-                data: this.props.vertical==false?[]:this.props.parms.xAxis,
+                type: vertical==false?'value':'category',
+                data: vertical==false?[]:parms.xAxis,
                 nameTextStyle:{
                     color:Config.yAxis.nameTextStyle.color
                 },
@@ -67,8 +69,8 @@ const BarStack = React.createClass({
             },
             yAxis: {
                 name: '',
-                type: this.props.vertical==false?'category':'value',
-                data: this.props.vertical==false?this.props.parms.xAxis:[],
+                type: vertical==false?'category':'value',
+                data: vertical==false?parms.xAxis:[],
                 nameTextStyle:{
                     color:Config.yAxis.nameTextStyle.color
                 },

@@ -9,7 +9,7 @@ class EgBar extends React.Component {
         this.state = {
             parmData:{
                 legend:['leve1','leve2'],
-                xAxis:['A','B','C','D'],
+                xAxis:['分类A','分类B','分类C','分类D'],
                 series:[[12,22,11,33],[21,12,12,21]]
             }
         }
@@ -23,9 +23,9 @@ class EgBar extends React.Component {
             style:{width:'100%',height:'300px'},
             parms:this.state.parmData,// 图表渲染所需数据
             title:'标题',
-            //legendShow:'hide',//不写即为默认显示
+            //legendShow:false,//默认显示
             dataZoom:{
-                show:'hide',// 不显示
+                //show:true,// 默认不显示
                 //start: 2,// 显示最新（后）的2个(横轴为值范围)，不写默认从开始显示
                 borderColor:'#5ACE9B',
                 handleColor:'#5ACE9B',
@@ -33,15 +33,28 @@ class EgBar extends React.Component {
                 fillerColor:'rgba(83,181,141,.2)'// 选取区域
             },
             barWidth:18,
-            labelShow:true,
-            //labelPosition:'top',//默认右边，横放时
-            vertical:false,// 排列方式，不写默认为true，代表纵向排列
-            color:['#37649a','#3764cc'],
+            //labelShow:false,//默认显示
+            labelFormatter:(p)=>{// 缺省使用默认
+                return `${p.value}￥`;
+            },
+            tooltipFormatter:(p)=>{// 缺省使用默认
+                let html = `${p[0].name}<br/>`;
+                p.forEach((v, k)=>{
+                    html += `<span style="display:inline-block;border-radius:100%;width:10px;height:10px;background:${v.color}"></span> ${v.seriesName}：${v.value}（万元）<br/>`;
+                });
+                return html;
+            },
+            vertical:false,// 排列方式，默认纵向排列
+            color:['#11649a','#3764cc'],
             grid:{//
                 left: '1%',
-                right: '4%',
+                right: '2%',
                 bottom: '6%',
                 top:'12%'
+            },
+            axisLabel:{// 可以不写，此属性可以配合grid.bottom调节显示坐标刻度名称横放显示不完
+              interval:0,
+              rotate:32
             }
         }
         return <div>

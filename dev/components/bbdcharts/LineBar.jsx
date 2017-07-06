@@ -8,7 +8,7 @@ const LineBar = React.createClass({
     propTypes: {
     },
     getSeries:function(){
-        const {parms, type, barWidth, color, labelBarShow, labelLineShow} = this.props;
+        const {parms, type, barWidth, color, labelBarShow, labelLineShow, labelFormatter} = this.props;
         var series = [];
         parms.legend.forEach(function(val,i){
             var base = {
@@ -16,7 +16,16 @@ const LineBar = React.createClass({
                 label: {
                     normal: {
                         show: type[i] === 'line' ? labelLineShow : labelBarShow,
-                        position: 'top'
+                        position: 'top',
+                        formatter:(p)=>{
+                            let html = '';
+                            if(labelFormatter){
+                                html = labelFormatter(p);
+                            }else{
+                                html = `${p.value}`;
+                            }
+                            return html;
+                        }
                     }
                 },
                 //type:type[i%2],
@@ -60,7 +69,7 @@ const LineBar = React.createClass({
         return yAxis;
     },
     getOption:function(){
-        const {title, grid, parms, axisLabel} = this.props;
+        const {title, grid, parms, axisLabel, tooltipFormatter} = this.props;
         const option = {
             title:{
                 text:title||'',
@@ -79,15 +88,18 @@ const LineBar = React.createClass({
                         opacity:0
                     }
                 },
-                formatter:function(parms){
-                    var html = '';
-                    parms.forEach(function(val,i){
-                        i===0 && (html = val.name+'<br/>');
-                        var dw = i%2===1?'':'';
-                        var style = 'width:10px;height:10px;display:inline-block;margin-right:4px;background:'+val.color;
-                        html +='<span style="'+style+'"></span>'+val.seriesName+'：'+val.value+dw+'<br/>';
-                    });
-                    return html;
+                formatter:function(p){
+                    if(tooltipFormatter){
+                        return tooltipFormatter(p);
+                    }else{
+                        var html = `${p[0].name}<br/>`;
+                        p.forEach(function(val,i){
+                            var style = 'width:10px;height:10px;display:inline-block;margin-right:4px;background:'+val.color;
+                            html +='<span style="'+style+'"></span>'+val.seriesName+'：'+val.value+'<br/>';
+                        });
+                        return html;
+                    }
+                    
                 }
             },
             legend:{

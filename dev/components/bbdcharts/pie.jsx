@@ -7,9 +7,10 @@ const Pie = React.createClass({
     propTypes: {
     },
     getOption:function(){
+        const {title, color, legend, parms, roseType, radius, center, labelFormatter, tooltipFormatter} = this.props;
         const option = {
             title: {
-                text:this.props.title,
+                text:title || '',
                 textStyle:Config.title.textStyle,
                 padding:Config.title.padding
                 /*subtext:'1000',
@@ -20,45 +21,50 @@ const Pie = React.createClass({
                    fontSize: 18
                 }*/
             },
-            color: this.props.color||['#C0B54C','#8956A1','#B4D465','#C490C0','#01479D','#1D89E4','#F9B552','#9B89EF','#00D5C3'],
+            color: color||['#C0B54C','#8956A1','#B4D465','#C490C0','#01479D','#1D89E4','#F9B552','#9B89EF','#00D5C3'],
             tooltip : {
                 trigger: 'item',
                 //formatter: "{b} : {c}%"
-                formatter:(parms)=>{
-                    // console.log(parms);
-                    var style = 'color:'+parms.color+';font-size:16px;font-weight:bold';
-                    var html = '<div>'+parms.name+'：<span style="'+style+'">'+parms.percent+'%</span></div>';
+                formatter:(p)=>{
+                    let html = '';
+                    if(tooltipFormatter){
+                        html = tooltipFormatter(p);
+                    }else{
+                        var style = 'color:'+p.color+';font-size:16px;font-weight:bold';
+                        html = '<div>'+p.name+'：<span style="'+style+'">'+p.percent+'%</span></div>';
+                    }
                     return html;
                 }
             },
             legend:{
-                show:this.props.legend,
+                show:legend,
                 orient: 'horizontal',
                 left: 'center',
                 top:'10%',
                 textStyle:Config.legend.textStyle,
-                data:this.props.parms.legend
+                data:parms.legend
             },
             grid: {
-                left: '3%',
-                right: '4%',
-                bottom: '3%',
-                containLabel: true
+                // 
             },
             series : [
                 {
-                    name: this.props.title||'',
+                    name: title||'',
                     type: 'pie',
-                    roseType: this.props.roseType,
-                    radius : this.props.radius||['30','60'],
-                    center: this.props.center||['50%', '50%'],
-                    data:this.props.parms.series,
+                    roseType: roseType,
+                    radius : radius||['30','60'],
+                    center: center||['50%', '50%'],
+                    data:parms.series,
                     label:{
                         normal:{
                             textStyle:{
                                 color:'#ccc'
                             },
-                            formatter:'{b} : {c}'
+                            formatter:labelFormatter ? (p)=>{
+                                let html = ''
+                                html = labelFormatter(p);
+                                return html;
+                            } : '{b} : {c}'
                         }
                     },
                     itemStyle: {

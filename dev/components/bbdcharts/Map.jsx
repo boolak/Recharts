@@ -16,8 +16,7 @@ const Map = React.createClass({
     getOption: function(opt) {
         const option = {
             title: {
-                text: opt.titleText || '标题',
-                show: opt.titleShow || false,
+                text: opt.titleText || ' ',
                 textStyle: {
                     color: '#fff',
                     fontWeight: 'normal',
@@ -29,10 +28,12 @@ const Map = React.createClass({
             },
             tooltip: {
                 trigger: 'item',
-                padding: 15,
-                backgroundColor: '#2a313b',
-                formatter: function(a) {
-                    return a.name+"：<span style='font-size: 24px;color:#fff5a4'>"+a.value+"</span>";
+                //padding: 15,
+                //backgroundColor: '#2a313b',
+                formatter: opt.tooltipFormatter ? (p)=>{
+                    return opt.tooltipFormatter(p);
+                } : (p)=>{
+                    return `${p.name}：${p.value}`;
                 }
             },
             legend: {
@@ -47,10 +48,8 @@ const Map = React.createClass({
                 textStyle: {
                     color: '#cccaca'
                 },
-                //left: 'right',
-                //top: 'bottom',
-                right: 45,
-                bottom: 25,
+                left: opt.left,
+                bottom: opt.bottom,
                 itemWidth: opt.itemWidth || 10,
                 itemHeight: opt.itemHeight || 100,
                 color: opt.color || ['#0a804c', '#9cdabf'],
@@ -74,7 +73,7 @@ const Map = React.createClass({
                     type: 'map',
                     mapType: '贵阳',
                     zoom: opt.zoom || 1,
-                    left: opt.left || 'center',
+                    left: 'center',
                     aspectScale: opt.aspectScale || 0.75,
                     showLegendSymbol: false,
                     label: {

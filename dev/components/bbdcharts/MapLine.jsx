@@ -96,8 +96,13 @@ const MapLine = React.createClass({
     propTypes: {
     },
     getOption: function() {
-        const parms = this.props.parms;
+        const {title, zoom, parms, mapColor, lineColor, source} = this.props;
         const option = {
+            title:{
+                text:title||'',
+                textStyle:Config.title.textStyle,
+                padding:Config.title.padding
+            },
             tooltip: {
                 trigger: 'item',
                 formatter:(parm)=>{
@@ -112,11 +117,11 @@ const MapLine = React.createClass({
                     }
                 },
                 roam: false,
-                zoom:this.props.zoom||1,
+                zoom:zoom||1,
                 silent: true,
                 itemStyle: {
                     normal: {
-                        areaColor: this.props.mapColor||'#2B323C',
+                        areaColor: mapColor||'#2B323C',
                         borderWidth:1
                     },
                     emphasis: {
@@ -142,7 +147,7 @@ const MapLine = React.createClass({
                         show: true,
                         period: 8,
                         trailLength: 0.1,
-                        color: this.props.lineColor||'#db9982',
+                        color: lineColor||'#db9982',
                         symbol: planePath,
                         symbolSize: 10
                     },
@@ -154,7 +159,7 @@ const MapLine = React.createClass({
                             curveness: 0.2
                         }
                     },
-                    data: formtGCData(parms.geo, parms.data, this.props.source, this.props)
+                    data: formtGCData(parms.geo, parms.data, source, this.props)
                 },
                 /*{
                     //in

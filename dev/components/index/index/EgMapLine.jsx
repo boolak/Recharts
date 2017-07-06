@@ -33,7 +33,8 @@ class EgMapLine extends React.Component {
         let propsData = {
             style:{'width':'100%','height':'300px'},
             parms:this.state.parmData,
-            isOut:false,//向里面
+            title:'地图迁徙',
+            isOut:false,//迁入目标城市
             source:'贵阳',//目标城市
             lineColor:'#5ACF9D',
             mapColor:'#2B323C',

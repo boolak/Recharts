@@ -1,47 +1,54 @@
-<pre style="max-width: 100%;"><code class="javascript hljs" codemark="1"><span class="hljs-keyword">import</span> React <span class="hljs-keyword">from</span> <span class="hljs-string">'react'</span>;
-<span class="hljs-keyword">import</span> Pie <span class="hljs-keyword">from</span> <span class="hljs-string">'../../bbdcharts/Pie'</span>;
+<pre><code>import React from 'react';
+import Pie from '../../bbdcharts/Pie';
 
 
-<span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">EgPie</span> <span class="hljs-keyword">extends</span> <span class="hljs-title">React</span>.<span class="hljs-title">Component</span> </span>{
-    <span class="hljs-keyword">constructor</span>(props) {
-        <span class="hljs-keyword">super</span>(props);
-        <span class="hljs-keyword">this</span>.displayName = <span class="hljs-string">'EgPie'</span>;
-        <span class="hljs-keyword">this</span>.state = {
+class EgPie extends React.Component {
+    constructor(props) {
+        super(props);
+        this.displayName = 'EgPie';
+        this.state = {
             parmData:{
-                legend:[<span class="hljs-string">'第一产业'</span>,<span class="hljs-string">'第二产业'</span>,<span class="hljs-string">'第三产业'</span>],
+                legend:['第一产业','第二产业','第三产业'],
                 series:[
                     {
-                        name:<span class="hljs-string">'第一产业'</span>,
-                        value:<span class="hljs-number">18</span>
+                        name:'第一产业',
+                        value:18
                     },
                     {
-                        name:<span class="hljs-string">'第二产业'</span>,
-                        value:<span class="hljs-number">22</span>
+                        name:'第二产业',
+                        value:22
                     },
                     {
-                        name:<span class="hljs-string">'第三产业'</span>,
-                        value:<span class="hljs-number">32</span>
+                        name:'第三产业',
+                        value:32
                     }
                 ]
             }
         }
     }
     render() {
-        <span class="hljs-keyword">let</span> propsData = {
-            style:{<span class="hljs-string">'width'</span>:<span class="hljs-string">'100%'</span>,<span class="hljs-string">'height'</span>:<span class="hljs-string">'300px'</span>},
-            parms:<span class="hljs-keyword">this</span>.state.parmData,
-            color:[<span class="hljs-string">'#dfa'</span>,<span class="hljs-string">'#fa3'</span>,<span class="hljs-string">'#aec'</span>],
-            radius:[<span class="hljs-number">40</span>,<span class="hljs-number">80</span>],<span class="hljs-comment">//不写默认为[30,60]</span>
-            roseType:<span class="hljs-literal">true</span>,<span class="hljs-comment">//代表玫瑰图，默认环状</span>
-            legend:<span class="hljs-literal">false</span>,<span class="hljs-comment">//是否显示分类</span>
-            <span class="hljs-comment">//title:'标题',//不写默认为空</span>
-            <span class="hljs-comment">//center:['50%','55%'],// 不写默认居中</span>
+        let propsData = {
+            style:{width:'100%',height:'300px'},
+            parms:this.state.parmData,
+            color:['#dfa','#fa3','#aec'],
+            radius:[40,80],//不写默认为[30,60]
+            roseType:true,//代表玫瑰图，默认环状
+            legend:false,//是否显示分类
+            labelFormatter:(p)=&gt;{// label自定义格式化，缺省为默认'{b} : {c}'
+                return `${p.name}：${p.value}（万元）`;
+            },
+            tooltipFormatter:(p)=&gt;{// tooltip自定义格式化，缺省为占比显示
+                var style = `color:${p.color};font-size:16px;font-weight:bold`;
+                var html = `&lt;div&gt;${p.name}占比：&lt;span style="${style}"&gt;${p.percent}%&lt;/span&gt;&lt;/div&gt;`;
+                return html;
+            },
+            //title:'标题',//不写默认为空
+            //center:['50%','55%'],// 不写默认居中
         }
-        <span class="hljs-keyword">return</span> <span class="xml"><span class="hljs-tag">&lt;<span class="hljs-name">div</span>&gt;</span>
-            <span class="hljs-tag">&lt;<span class="hljs-name">Pie</span> {<span class="hljs-attr">...propsData</span>}/&gt;</span>
-        <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>;
+        return &lt;div&gt;
+            &lt;Pie ref={(ref)=&gt;{this.chart = ref}} {...propsData}/&gt;
+        &lt;/div&gt;;
     }
 }
 
-export default EgPie;
-</span></code></pre>
+export default EgPie;</code></pre>

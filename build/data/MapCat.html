@@ -1,58 +1,70 @@
-<pre style="max-width: 100%;"><code class="javascript hljs" codemark="1"><span class="hljs-keyword">import</span> React,{PropTypes} <span class="hljs-keyword">from</span> <span class="hljs-string">'react'</span>
-<span class="hljs-keyword">import</span> { browserHistory } <span class="hljs-keyword">from</span> <span class="hljs-string">'react-router'</span>
-<span class="hljs-keyword">import</span> MapCat <span class="hljs-keyword">from</span> <span class="hljs-string">'../../bbdcharts/MapCat'</span>
+<pre><code>import React,{PropTypes} from 'react'
+import { browserHistory } from 'react-router'
+import MapCat from '../../bbdcharts/MapCat'
 
-<span class="hljs-comment">/*散点地图*/</span>
-<span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">EgMapCat</span> <span class="hljs-keyword">extends</span> <span class="hljs-title">React</span>.<span class="hljs-title">Component</span> </span>{
-    <span class="hljs-keyword">constructor</span>(props) {
-        <span class="hljs-keyword">super</span>(props);
-        <span class="hljs-keyword">this</span>.displayName = <span class="hljs-string">'EgMapCat'</span>;
-        <span class="hljs-keyword">this</span>.state = {
+/*散点地图*/
+class EgMapCat extends React.Component {
+    constructor(props) {
+        super(props);
+        this.displayName = 'EgMapCat';
+        this.state = {
             parmData:{
                 data:[
-                    {<span class="hljs-string">"name"</span>: <span class="hljs-string">"中国电信股份有限公司贵阳分公司"</span>,<span class="hljs-string">"value"</span>: <span class="hljs-string">"381"</span>},
-                    {<span class="hljs-string">"name"</span>: <span class="hljs-string">"中国移动通信集团贵州有限公司贵阳分公司"</span>,<span class="hljs-string">"value"</span>: <span class="hljs-string">"349"</span>},
-                    {<span class="hljs-string">"name"</span>: <span class="hljs-string">"中国联合网络通信有限公司贵阳市分公司"</span>,<span class="hljs-string">"value"</span>: <span class="hljs-string">"578"</span>},
-                    {<span class="hljs-string">"name"</span>: <span class="hljs-string">"贵州省广播电视信息网络股份有限公司贵阳市分公司"</span>,<span class="hljs-string">"value"</span>: <span class="hljs-string">"648"</span>},
-                    {<span class="hljs-string">"name"</span>: <span class="hljs-string">"京东商城"</span>,<span class="hljs-string">"value"</span>: <span class="hljs-string">"581"</span>},
-                    {<span class="hljs-string">"name"</span>: <span class="hljs-string">"家有购物"</span>,<span class="hljs-string">"value"</span>: <span class="hljs-string">"780"</span>},
-                    {<span class="hljs-string">"name"</span>: <span class="hljs-string">"贵阳供电局"</span>,<span class="hljs-string">"value"</span>: <span class="hljs-string">"543"</span>},
-                    {<span class="hljs-string">"name"</span>: <span class="hljs-string">"贵州艾普宽带科技有限公司"</span>,<span class="hljs-string">"value"</span>: <span class="hljs-string">"643"</span>},
-                    {<span class="hljs-string">"name"</span>: <span class="hljs-string">"苏宁电器"</span>,<span class="hljs-string">"value"</span>: <span class="hljs-string">"737"</span>},
-                    {<span class="hljs-string">"name"</span>: <span class="hljs-string">"贵阳长城宽带网络服务有限公司"</span>,<span class="hljs-string">"value"</span>: <span class="hljs-string">"833"</span>},
-                    {<span class="hljs-string">"name"</span>: <span class="hljs-string">"贵阳市供水总公司"</span>,<span class="hljs-string">"value"</span>: <span class="hljs-string">"426"</span>}
+                    {"name": "中国电信股份有限公司贵阳分公司","value": "181"},
+                    {"name": "中国移动通信集团贵州有限公司贵阳分公司","value": "349"},
+                    {"name": "中国联合网络通信有限公司贵阳市分公司","value": "178"},
+                    {"name": "贵州省广播电视信息网络股份有限公司贵阳市分公司","value": "118"},
+                    {"name": "京东商城","value": "281"},
+                    {"name": "家有购物","value": "780"},
+                    {"name": "贵阳供电局","value": "543"},
+                    {"name": "贵州艾普宽带科技有限公司","value": "643"},
+                    {"name": "苏宁电器","value": "327"},
+                    {"name": "贵阳长城宽带网络服务有限公司","value": "833"},
+                    {"name": "贵阳市供水总公司","value": "226"}
                 ],
                 geo:{
-                    <span class="hljs-string">"中国电信股份有限公司贵阳分公司"</span>:[<span class="hljs-number">106.75</span>,<span class="hljs-number">26.63</span>],
-                    <span class="hljs-string">"中国移动通信集团贵州有限公司贵阳分公司"</span>:[<span class="hljs-number">106.75</span>,<span class="hljs-number">26.82</span>],
-                    <span class="hljs-string">"中国联合网络通信有限公司贵阳市分公司"</span>:[<span class="hljs-number">106.86</span>,<span class="hljs-number">27.13</span>],
-                    <span class="hljs-string">"贵州省广播电视信息网络股份有限公司贵阳市分公司"</span>:[<span class="hljs-number">106.24</span>,<span class="hljs-number">26.63</span>],
-                    <span class="hljs-string">"京东商城"</span>:[<span class="hljs-number">106.71</span>,<span class="hljs-number">26.43</span>],
-                    <span class="hljs-string">"家有购物"</span>:[<span class="hljs-number">106.55</span>,<span class="hljs-number">26.93</span>],
-                    <span class="hljs-string">"贵阳供电局"</span>:[<span class="hljs-number">106.75</span>,<span class="hljs-number">27.1</span>],
-                    <span class="hljs-string">"贵州艾普宽带科技有限公司"</span>:[<span class="hljs-number">106.95</span>,<span class="hljs-number">26.81</span>],
-                    <span class="hljs-string">"苏宁电器"</span>:[<span class="hljs-number">106.72</span>,<span class="hljs-number">26.57</span>],
-                    <span class="hljs-string">"贵阳长城宽带网络服务有限公司"</span>:[<span class="hljs-number">106.48</span>,<span class="hljs-number">26.83</span>],
-                    <span class="hljs-string">"贵阳市供水总公司"</span>:[<span class="hljs-number">106.35</span>,<span class="hljs-number">26.63</span>]
+                    "中国电信股份有限公司贵阳分公司":[106.75,26.63],
+                    "中国移动通信集团贵州有限公司贵阳分公司":[106.75,26.82],
+                    "中国联合网络通信有限公司贵阳市分公司":[106.86,27.13],
+                    "贵州省广播电视信息网络股份有限公司贵阳市分公司":[106.24,26.63],
+                    "京东商城":[106.71,26.43],
+                    "家有购物":[106.55,26.93],
+                    "贵阳供电局":[106.75,27.1],
+                    "贵州艾普宽带科技有限公司":[106.95,26.81],
+                    "苏宁电器":[106.72,26.57],
+                    "贵阳长城宽带网络服务有限公司":[106.48,26.83],
+                    "贵阳市供水总公司":[106.35,26.63]
                 }
             }
         }
     }
     render(){
-        <span class="hljs-keyword">let</span> propsData = {
-            style:{height: <span class="hljs-string">'300px'</span>, width: <span class="hljs-string">'100%'</span>},
-            data:<span class="hljs-keyword">this</span>.state.parmData.data,
-            geo:<span class="hljs-keyword">this</span>.state.parmData.geo,
-            title:<span class="hljs-string">'散点分布地图'</span>,<span class="hljs-comment">//不行默认为空,</span>
-            itemColor: <span class="hljs-string">'#21586D'</span>, <span class="hljs-comment">// 地图颜色</span>
-            scatterColor: <span class="hljs-string">'#7ECDF4'</span> <span class="hljs-comment">// 散点颜色</span>
+        let propsData = {
+            style:{height: '300px', width: '100%'},
+            data:this.state.parmData.data,
+            geo:this.state.parmData.geo,
+            title:'散点分布地图',//不行默认为空,
+            itemColor: '#21586D', // 地图颜色
+            scatterColor: '#7ECDF4', // 散点颜色
+            tooltipFormatter:(p)=&gt;{// 默认可不配置，既不会显示
+                return `&lt;span style="font-size:12px;"&gt;${p.name}：${p.value[2]}(亿元)&lt;/span&gt;`;
+            },
+            visualMap:{// 默认可不配置,即不会显示
+                max:833,// 根据实际情况配置
+                text:['高','低'],
+                textColor:'#3ed',
+                color:['#3DD', '#fff'],
+                left: '80%',
+                top: 'bottom',
+                //calculable: true //默认不显示
+            }
         }
-        <span class="hljs-keyword">return</span> (
-            <span class="xml"><span class="hljs-tag">&lt;<span class="hljs-name">div</span>&gt;</span>
-                <span class="hljs-tag">&lt;<span class="hljs-name">MapCat</span> <span class="hljs-attr">ref</span>=<span class="hljs-string">'MapCat'</span> {<span class="hljs-attr">...propsData</span>}/&gt;</span>
-            <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+        return (
+            &lt;div&gt;
+                &lt;MapCat ref='MapCat' {...propsData}/&gt;
+            &lt;/div&gt;
         )
     }
 }
 
-export default EgMapCat;</span></code></pre>
+export default EgMapCat;</code></pre>

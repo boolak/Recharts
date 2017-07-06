@@ -1,46 +1,46 @@
-<pre style="max-width: 100%;"><code class="javascript hljs" codemark="1"><span class="hljs-keyword">import</span> React <span class="hljs-keyword">from</span> <span class="hljs-string">'react'</span>;
-<span class="hljs-keyword">import</span> MapLine <span class="hljs-keyword">from</span> <span class="hljs-string">'../../bbdcharts/MapLine'</span>;
+<pre><code>import React from 'react';
+import MapLine from '../../bbdcharts/MapLine';
 
-<span class="hljs-comment">//迁徙地图</span>
-<span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">EgMapLine</span> <span class="hljs-keyword">extends</span> <span class="hljs-title">React</span>.<span class="hljs-title">Component</span> </span>{
-    <span class="hljs-keyword">constructor</span>(props) {
-        <span class="hljs-keyword">super</span>(props);
-        <span class="hljs-keyword">this</span>.displayName = <span class="hljs-string">'EgMapLine'</span>;
-        <span class="hljs-keyword">this</span>.state = {
+//迁徙地图
+class EgMapLine extends React.Component {
+    constructor(props) {
+        super(props);
+        this.displayName = 'EgMapLine';
+        this.state = {
             parmData:{
                 data:[
-                    {name: <span class="hljs-string">'长春'</span>,value: <span class="hljs-number">447.6</span>},
-                    {name: <span class="hljs-string">'长沙'</span>,value: <span class="hljs-number">17.5</span>},
-                    {name: <span class="hljs-string">'贵阳'</span>,value: <span class="hljs-number">13.6</span>},
-                    {name: <span class="hljs-string">'西安'</span>,value: <span class="hljs-number">10.0</span>},
-                    {name: <span class="hljs-string">'深圳'</span>,value: <span class="hljs-number">10.0</span>}
+                    {name: '长春',value: 447.6},
+                    {name: '长沙',value: 17.5},
+                    {name: '贵阳',value: 13.6},
+                    {name: '西安',value: 10.0},
+                    {name: '深圳',value: 10.0}
                 ],
                 geo:{
-                    <span class="hljs-string">'长春'</span>: [<span class="hljs-number">125.8154</span>, <span class="hljs-number">44.2584</span>],
-                    <span class="hljs-string">'长沙'</span>: [<span class="hljs-number">113.0823</span>, <span class="hljs-number">28.2568</span>],
-                    <span class="hljs-string">'贵阳'</span>: [<span class="hljs-number">106.6992</span>, <span class="hljs-number">26.7682</span>],
-                    <span class="hljs-string">'西安'</span>: [<span class="hljs-number">109.1162</span>, <span class="hljs-number">34.2004</span>],
-                    <span class="hljs-string">'深圳'</span>: [<span class="hljs-number">114.5435</span>, <span class="hljs-number">22.5439</span>]
+                    '长春': [125.8154, 44.2584],
+                    '长沙': [113.0823, 28.2568],
+                    '贵阳': [106.6992, 26.7682],
+                    '西安': [109.1162, 34.2004],
+                    '深圳': [114.5435, 22.5439]
                 }
             }
         }
     }
     render() {
-        <span class="hljs-keyword">let</span> propsData = {
-            style:{<span class="hljs-string">'width'</span>:<span class="hljs-string">'100%'</span>,<span class="hljs-string">'height'</span>:<span class="hljs-string">'300px'</span>},
-            parms:<span class="hljs-keyword">this</span>.state.parmData,
-            isOut:<span class="hljs-literal">false</span>,<span class="hljs-comment">//向里面</span>
-            source:<span class="hljs-string">'贵阳'</span>,<span class="hljs-comment">//目标城市</span>
-            lineColor:<span class="hljs-string">'#5ACF9D'</span>,
-            mapColor:<span class="hljs-string">'#2B323C'</span>,
-            lableColor:<span class="hljs-string">'#5ACF9D'</span>,
-            zoom:<span class="hljs-number">1.2</span>
+        let propsData = {
+            style:{'width':'100%','height':'300px'},
+            parms:this.state.parmData,
+            title:'地图迁徙',
+            isOut:false,//迁入目标城市
+            source:'贵阳',//目标城市
+            lineColor:'#5ACF9D',
+            mapColor:'#2B323C',
+            lableColor:'#5ACF9D',
+            zoom:1.2
         }
-        <span class="hljs-keyword">return</span> <span class="xml"><span class="hljs-tag">&lt;<span class="hljs-name">div</span>&gt;</span>
-            <span class="hljs-tag">&lt;<span class="hljs-name">MapLine</span> {<span class="hljs-attr">...propsData</span>}/&gt;</span>
-        <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>;
+        return &lt;div&gt;
+            &lt;MapLine ref={(ref)=&gt;{this.chart = ref}} {...propsData}/&gt;
+        &lt;/div&gt;;
     }
 }
 
-export default EgMapLine;
-</span></code></pre>
+export default EgMapLine;</code></pre>

@@ -1,75 +1,80 @@
-<pre style="max-width: 100%;"><code class="javascript hljs" codemark="1"><span class="hljs-keyword">import</span> React <span class="hljs-keyword">from</span> <span class="hljs-string">'react'</span>;
-<span class="hljs-keyword">import</span> BarStack <span class="hljs-keyword">from</span> <span class="hljs-string">'../../bbdcharts/BarStack'</span>;
+<pre><code>import React from 'react';
+import BarStack from '../../bbdcharts/BarStack';
 
-<span class="hljs-comment">//堆叠柱状</span>
-<span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">EgBarStack</span> <span class="hljs-keyword">extends</span> <span class="hljs-title">React</span>.<span class="hljs-title">Component</span> </span>{
-    <span class="hljs-keyword">constructor</span>(props) {
-        <span class="hljs-keyword">super</span>(props);
-        <span class="hljs-keyword">this</span>.displayName = <span class="hljs-string">'EgBarStack'</span>;
-        <span class="hljs-keyword">this</span>.state = {
+//堆叠柱状
+class EgBarStack extends React.Component {
+    constructor(props) {
+        super(props);
+        this.displayName = 'EgBarStack';
+        this.state = {
             parmData:{
-                legend:[<span class="hljs-string">'A'</span>,<span class="hljs-string">'B'</span>,<span class="hljs-string">'C'</span>,<span class="hljs-string">'D'</span>],
+                legend:['A','B','C','D'],
                 series:[
                         {
-                            name:<span class="hljs-string">'D'</span>,
-                            data:[<span class="hljs-number">594</span>,<span class="hljs-number">560</span>,<span class="hljs-number">538</span>],
-                            stack:<span class="hljs-string">'活跃'</span>
+                            name:'D',
+                            data:[594,560,538],
+                            stack:'活跃'
                         },
                         {
-                            name:<span class="hljs-string">'C'</span>,
-                            data:[<span class="hljs-number">690</span>,<span class="hljs-number">669</span>,<span class="hljs-number">653</span>],
-                            stack:<span class="hljs-string">'活跃'</span>
+                            name:'C',
+                            data:[690,669,653],
+                            stack:'活跃'
                         },
                         {
-                            name:<span class="hljs-string">'B'</span>,
-                            data:[<span class="hljs-number">162</span>,<span class="hljs-number">162</span>,<span class="hljs-number">157</span>],
-                            stack:<span class="hljs-string">'活跃'</span>
+                            name:'B',
+                            data:[162,162,157],
+                            stack:'活跃'
                         },
                         {
-                            name:<span class="hljs-string">'A'</span>,
-                            data:[<span class="hljs-number">218</span>,<span class="hljs-number">206</span>,<span class="hljs-number">210</span>],
-                            stack:<span class="hljs-string">'活跃'</span>
+                            name:'A',
+                            data:[218,206,210],
+                            stack:'活跃'
                         },
 
                         {
-                            name:<span class="hljs-string">'D'</span>,
-                            data:[<span class="hljs-number">2170</span>,<span class="hljs-number">2319</span>,<span class="hljs-number">2491</span>],
-                            stack:<span class="hljs-string">'非活跃'</span>
+                            name:'D',
+                            data:[2170,2319,2491],
+                            stack:'非活跃'
                         },
                         {
-                            name:<span class="hljs-string">'C'</span>,
-                            data:[<span class="hljs-number">2521</span>,<span class="hljs-number">2771</span>,<span class="hljs-number">3023</span>],
-                            stack:<span class="hljs-string">'非活跃'</span>
+                            name:'C',
+                            data:[2521,2771,3023],
+                            stack:'非活跃'
                         },
                         {
-                            name:<span class="hljs-string">'B'</span>,
-                            data:[<span class="hljs-number">592</span>,<span class="hljs-number">671</span>,<span class="hljs-number">727</span>],
-                            stack:<span class="hljs-string">'非活跃'</span>
+                            name:'B',
+                            data:[592,671,727],
+                            stack:'非活跃'
                         },
                         {
-                            name:<span class="hljs-string">'A'</span>,
-                            data:[<span class="hljs-number">796</span>,<span class="hljs-number">853</span>,<span class="hljs-number">972</span>],
-                            stack:<span class="hljs-string">'非活跃'</span>
+                            name:'A',
+                            data:[796,853,972],
+                            stack:'非活跃'
                         }
                     
                 ],
-                xAxis:[<span class="hljs-string">'2014'</span>,<span class="hljs-string">'2015'</span>,<span class="hljs-string">'2016'</span>]
+                xAxis:['2014','2015','2016']
             }
         }
     }
     render() {
-        <span class="hljs-keyword">let</span> propsData = {
-            style:{width:<span class="hljs-string">'100%'</span>,height:<span class="hljs-string">'300px'</span>},
-            parms:<span class="hljs-keyword">this</span>.state.parmData,
-            color:[<span class="hljs-string">'#1A8AEA'</span>,<span class="hljs-string">'#02CBCC'</span>,<span class="hljs-string">'#A373EC'</span>,<span class="hljs-string">'#BA9FE3'</span>],
-            barWidth:<span class="hljs-number">28</span>,
-            <span class="hljs-comment">//vertical:false//不写，代表默认纵向</span>
+        let propsData = {
+            style:{width:'100%',height:'300px'},
+            parms:this.state.parmData,
+            color:['#1A8AEA','#02CBCC','#A373EC','#BA9FE3'],
+            barWidth:28,
+            grid:{
+                left: '4%',
+                right: '4%',
+                bottom: '4%',
+                top:'9%'
+            },
+            //vertical:false//不写，代表默认纵向
         }
-        <span class="hljs-keyword">return</span> <span class="xml"><span class="hljs-tag">&lt;<span class="hljs-name">div</span>&gt;</span>
-            <span class="hljs-tag">&lt;<span class="hljs-name">BarStack</span> {<span class="hljs-attr">...propsData</span>}/&gt;</span>
-        <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>;
+        return &lt;div&gt;
+            &lt;BarStack {...propsData}/&gt;
+        &lt;/div&gt;;
     }
 }
 
-export default EgBarStack;
-</span></code></pre>
+export default EgBarStack;</code></pre>

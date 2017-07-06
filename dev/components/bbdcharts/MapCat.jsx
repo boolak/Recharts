@@ -37,9 +37,10 @@ const Map = React.createClass({
         return res;
     },
     getOption: function() {
+        const {title, itemColor, scatterColor, tooltipFormatter, visualMap, data} = this.props;
         const option = {
             title: {
-                text: this.props.title,
+                text: title,
                 textStyle: {
                     color: '#fff',
                     fontWeight: 'normal',
@@ -49,38 +50,35 @@ const Map = React.createClass({
                 //subtext: '纯属虚构',
                 left: 'left'
             },
-            tooltip: {
+            tooltip: tooltipFormatter ? {
                 trigger: 'item',
                 padding: [6,10],
                 backgroundColor: 'rgba(0,0,0,.5)',
-                formatter: function(a) {
-                    //return '<span style="font-size:12px;">'+a.name+'：投诉'+a.value[2].split(',')[0]+'，举报'+a.value[2].split(',')[1]+'</span>';
-                    //console.log(a);
+                formatter: function(p) {
+                    return tooltipFormatter(p);
                 }
-            },
+            } : null,
             legend: {
                 orient: 'vertical',
                 left: 'left',
                 show: false,
                 data:['']
             },
-            visualMap: {
+            visualMap:visualMap ? {
                 min: 0,
-                max: 320,
+                max: visualMap.max,
                 textStyle: {
-                    color: '#cccaca'
+                    color: visualMap.textColor
                 },
-                show:false,
-                //left: 'right',
-                //top: 'bottom',
-                right: 45,
-                bottom: 25,
+                //show:false,
+                left: visualMap.left,
+                top: visualMap.top,
                 itemWidth: 10,
                 itemHeight: 100,
-                color: ['#3D5178', '#9cdabf'],
-                text: ['高','低'],           // 文本，默认为数值文本
-                calculable: false
-            },
+                color: visualMap.color,
+                text: visualMap.text,
+                calculable: visualMap.calculable == undefined || !visualMap.calculable ? false : true
+            }:null,
             toolbox: {
                 show: false,
                 orient: 'vertical',
@@ -109,7 +107,7 @@ const Map = React.createClass({
                 },
                 itemStyle:{
                     normal:{
-                        color: this.props.itemColor || '#437769',
+                        color: itemColor || '#437769',
                         borderColor:'#fff'
                     },
                     emphasis: {
@@ -124,16 +122,16 @@ const Map = React.createClass({
                     coordinateSystem: 'geo',
                     symbolSize:(val)=>{
                         //console.log(val);
-                        return Math.max(val[2] / 100, 6);
+                        return Math.max(val[2] / 100, 4);
                     },
                     itemStyle:{
                         normal:{
-                            color: this.props.scatterColor || '#FFAD75',
+                            color: scatterColor || '#FFAD75',
                             shadowBlur: 10,
-                            shadowColor: '#3ea'
+                            shadowColor: '#fff'
                         }
                     },
-                    data: this.convertData(this.props.data)
+                    data: this.convertData(data)
                 }
             ]
         };

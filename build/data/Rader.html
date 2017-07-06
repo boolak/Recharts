@@ -1,32 +1,33 @@
-<pre style="max-width: 100%;"><code class="javascript hljs" codemark="1"><span class="hljs-keyword">import</span> React <span class="hljs-keyword">from</span> <span class="hljs-string">'react'</span>;
-<span class="hljs-keyword">import</span> Rader <span class="hljs-keyword">from</span> <span class="hljs-string">'../../bbdcharts/Rader'</span>;
+<pre><code>import React from 'react';
+import Rader from '../../bbdcharts/Rader';
 
 
-<span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">EgRader</span> <span class="hljs-keyword">extends</span> <span class="hljs-title">React</span>.<span class="hljs-title">Component</span> </span>{
-    <span class="hljs-keyword">constructor</span>(props) {
-        <span class="hljs-keyword">super</span>(props);
-        <span class="hljs-keyword">this</span>.displayName = <span class="hljs-string">'EgRader'</span>;
-        <span class="hljs-keyword">this</span>.state = {
+class EgRader extends React.Component {
+    constructor(props) {
+        super(props);
+        this.displayName = 'EgRader';
+        this.state = {
             parmData:{
-                <span class="hljs-string">"legend"</span>:[<span class="hljs-string">"重点产业"</span>,<span class="hljs-string">"test"</span>],
-                <span class="hljs-string">"radar"</span>:[
+                "legend":["成都", "贵阳"],
+                "radar":[
                     {
-                        <span class="hljs-string">"indicator"</span>:[
-                            {<span class="hljs-string">"name"</span>:<span class="hljs-string">"大数据"</span>,<span class="hljs-string">"max"</span>:<span class="hljs-number">100</span>},
-                            {<span class="hljs-string">"name"</span>:<span class="hljs-string">"大健康"</span>,<span class="hljs-string">"max"</span>:<span class="hljs-number">100</span>},
-                            {<span class="hljs-string">"name"</span>:<span class="hljs-string">"大旅游"</span>,<span class="hljs-string">"max"</span>:<span class="hljs-number">100</span>},
-                            {<span class="hljs-string">"name"</span>:<span class="hljs-string">"大数据"</span>,<span class="hljs-string">"max"</span>:<span class="hljs-number">100</span>}
+                        "indicator":[
+                            {"name":"大数据","max":100},
+                            {"name":"大健康","max":100},
+                            {"name":"大旅游","max":100},
+                            {"name":"大产业","max":100}
                         ]
                     }
                 ],
-                <span class="hljs-string">"series"</span>:[
+                "series":[
                     [
                         {
-                            <span class="hljs-string">"value"</span>:[<span class="hljs-number">85.8</span>,<span class="hljs-number">87.8</span>,<span class="hljs-number">89.8</span>,<span class="hljs-number">82.8</span>],
-                            <span class="hljs-string">"name"</span>:<span class="hljs-string">"重点"</span>
+                            "name":"成都",
+                            "value":[85.8,65.8,77.8,80.8]
+                            
                         },{
-                            <span class="hljs-string">"value"</span>:[<span class="hljs-number">56.8</span>,<span class="hljs-number">54.8</span>,<span class="hljs-number">70.8</span>,<span class="hljs-number">43.8</span>],
-                            <span class="hljs-string">"name"</span>:<span class="hljs-string">"test"</span>
+                            "name":"贵阳",
+                            "value":[56.8,54.8,70.8,43.8]
                         }
                     ]
                 ]
@@ -34,20 +35,30 @@
         }
     }
     render() {
-        <span class="hljs-keyword">let</span> propsData = {
-            style:{<span class="hljs-string">'width'</span>:<span class="hljs-string">'100%'</span>,<span class="hljs-string">'height'</span>:<span class="hljs-string">'300px'</span>},
-            parms:<span class="hljs-keyword">this</span>.state.parmData,
-            <span class="hljs-comment">//title:'',//默认空</span>
-            <span class="hljs-comment">//radius:[],//默认'70%'</span>
-            <span class="hljs-comment">//center:[],//默认居中</span>
-            areaStyleColor:<span class="hljs-string">'#b9b'</span>,
-            color:[<span class="hljs-string">'#c2f'</span>,<span class="hljs-string">'#da3'</span>]
+        let propsData = {
+            style:{'width':'100%','height':'300px'},
+            parms:this.state.parmData,
+            //title:'',//默认空
+            radius:'60%',//默认'70%'
+            labelShow: true,//默认不显示
+            labelFormatter:(p)=&gt;{// 缺省使用默认
+                return `${p.value}万`;
+            },
+            toolTipFormatter:(p)=&gt;{// 缺省使用默认
+                let html = `${p.name}&lt;br/&gt;`;
+                this.state.parmData.radar[0].indicator.forEach((v, k)=&gt;{
+                    html += `${v.name}：${p.value[k]}，占比：--%&lt;br/&gt;`;
+                });
+                return html;
+            },
+            //center:[],//默认居中
+            areaStyleColor:'#b9b',
+            color:['#c2f','#da3']
         }
-        <span class="hljs-keyword">return</span> <span class="xml"><span class="hljs-tag">&lt;<span class="hljs-name">div</span>&gt;</span>
-            <span class="hljs-tag">&lt;<span class="hljs-name">Rader</span> {<span class="hljs-attr">...propsData</span>}/&gt;</span>
-        <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>;
+        return &lt;div&gt;
+            &lt;Rader {...propsData}/&gt;
+        &lt;/div&gt;;
     }
 }
 
-export default EgRader;
-</span></code></pre>
+export default EgRader;</code></pre>

@@ -15,7 +15,7 @@ class EgLineBar extends React.Component {
                    "增加值(亿元)","同比增长率(%)"
                 ],
                 legend: [
-                   "A增加值","A同比增长率(%)","B增加值","B同比增长率(%)"
+                   "A增加值","A同比增长率","B增加值","B同比增长率"
                 ],
                 series: [
                    [
@@ -40,17 +40,29 @@ class EgLineBar extends React.Component {
     }
     render() {
         let propsData = {
-            style:{'width':'100%','height':'300px'},
+            style:{width:'100%',height:'300px'},
             parms:this.state.parmData,
-            //title:'标题',//可以不写
+            //title:'标题',//默认不写
             barWidth:12,
             grid:{top:80,bottom:40, left:20, right:20},//不写使用默认
-            axisLabel:{// 可以不写，此属性永远配合grid.bottom调节显示横轴刻度名称横放显示不完
+            axisLabel:{// 默认不写，此属性可以配合grid.bottom调节显示坐标刻度名称横放显示不完
               interval:0,
               rotate:42
             },
-            labelBarShow: false,// 是否显示柱状label
-            labelLineShow: true,// 是否显示线条label
+            //labelBarShow: true,// 是否显示柱状label,默认不显示
+            labelLineShow: true,// 是否显示线条label,默认不显示
+            labelFormatter:(p)=>{// 缺省使用默认
+                return `${p.value}%`;
+            },
+            tooltipFormatter:(p)=>{// 缺省使用默认
+              var html = `${p[0].name}<br/>`;
+              p.forEach(function(val,i){
+                  var dw = i%2==1?'%':'';
+                  var style = 'width:10px;height:10px;display:inline-block;margin-right:4px;background:'+val.color;
+                  html +='<span style="'+style+'"></span>'+val.seriesName+'：'+val.value+dw+'<br/>';
+              });
+              return html;
+            },
             color:['#37649A','#37649A','#37AA8D','#37AA8D'],
             type:['bar','line','bar','line']//代表柱状，线条;先后顺序与series、color相对应
         }

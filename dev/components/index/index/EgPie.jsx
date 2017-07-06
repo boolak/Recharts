@@ -32,12 +32,20 @@ class EgPie extends React.Component {
     }
     render() {
         let propsData = {
-            style:{'width':'100%','height':'300px'},
+            style:{width:'100%',height:'300px'},
             parms:this.state.parmData,
             color:['#dfa','#fa3','#aec'],
             radius:[40,80],//不写默认为[30,60]
             roseType:true,//代表玫瑰图，默认环状
             legend:false,//是否显示分类
+            labelFormatter:(p)=>{// label自定义格式化，缺省为默认'{b} : {c}'
+                return `${p.name}：${p.value}（万元）`;
+            },
+            tooltipFormatter:(p)=>{// tooltip自定义格式化，缺省为占比显示
+                var style = `color:${p.color};font-size:16px;font-weight:bold`;
+                var html = `<div>${p.name}占比：<span style="${style}">${p.percent}%</span></div>`;
+                return html;
+            },
             //title:'标题',//不写默认为空
             //center:['50%','55%'],// 不写默认居中
         }

@@ -8,25 +8,26 @@ class EgRader extends React.Component {
         this.displayName = 'EgRader';
         this.state = {
             parmData:{
-                "legend":["重点产业","test"],
+                "legend":["成都", "贵阳"],
                 "radar":[
                     {
                         "indicator":[
                             {"name":"大数据","max":100},
                             {"name":"大健康","max":100},
                             {"name":"大旅游","max":100},
-                            {"name":"大数据","max":100}
+                            {"name":"大产业","max":100}
                         ]
                     }
                 ],
                 "series":[
                     [
                         {
-                            "value":[85.8,87.8,89.8,82.8],
-                            "name":"重点"
+                            "name":"成都",
+                            "value":[85.8,65.8,77.8,80.8]
+                            
                         },{
-                            "value":[56.8,54.8,70.8,43.8],
-                            "name":"test"
+                            "name":"贵阳",
+                            "value":[56.8,54.8,70.8,43.8]
                         }
                     ]
                 ]
@@ -42,7 +43,18 @@ class EgRader extends React.Component {
             style:{'width':'100%','height':'300px'},
             parms:this.state.parmData,
             //title:'',//默认空
-            //radius:[],//默认'70%'
+            radius:'60%',//默认'70%'
+            labelShow: true,//默认不显示
+            labelFormatter:(p)=>{// 缺省使用默认
+                return `${p.value}万`;
+            },
+            toolTipFormatter:(p)=>{// 缺省使用默认
+                let html = `${p.name}<br/>`;
+                this.state.parmData.radar[0].indicator.forEach((v, k)=>{
+                    html += `${v.name}：${p.value[k]}，占比：--%<br/>`;
+                });
+                return html;
+            },
             //center:[],//默认居中
             areaStyleColor:'#b9b',
             color:['#c2f','#da3']

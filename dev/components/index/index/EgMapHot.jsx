@@ -31,17 +31,21 @@ class EgMapHot extends React.Component {
             parms:this.state.parmData,
             option:{
                 titleText:'热力分布地图',
-                titleShow:true,
                 zoom:1.2,
-                /*min:'',
-                max:'',
+                /*min:'',//视觉映射最小
+                max:'',//视觉映射最大
                 itemWidth:'',
                 itemHeight:'',
-                color:[],//是否显示拖拽用的手柄
-                left:'',*/
+                color:[],*/
+                left:'80%',
+                bottom:'bottom',
+                //calculable:true,//是否显示拖拽用的手柄,默认不显示
                 aspectScale:1,//长宽比
-                labelShow:true,
-                itemEmphasisColor:'#fab'//高亮颜色
+                //labelShow:false,// 默认显示
+                tooltipFormatter:(p)=>{// 缺省使用默认
+                    return `${p.name}：${p.value}（亿元）`;
+                },
+                itemEmphasisColor:'#df3'//高亮颜色
             }
         };
         return <div>
