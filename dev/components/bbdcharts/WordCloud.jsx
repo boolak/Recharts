@@ -2,8 +2,7 @@ import React from 'react';
 import ReactEcharts from './src/echarts-for-react';
 import Config from './config.jsx';
 
-
-//柱状图谱
+// 柱状图谱
 /*
 {
     vertical:false,//排列方式，默认为true，代表纵向排列
@@ -16,13 +15,13 @@ import Config from './config.jsx';
 const WordCloud = React.createClass({
     propTypes: {
     },
-    getOption:function(){
+    getOption: function(){
         const option = {
-            title:{
-                text:'词云图',
-                link:'https://github.com/ecomfe/echarts-wordcloud',
+            title: {
+                text: '词云图',
+                link: 'https://github.com/ecomfe/echarts-wordcloud',
                 subtext: 'data-visual.cn',
-                sublink:'http://data-visual.cn',
+                sublink: 'http://data-visual.cn'
             },
             tooltip: {},
             series: [{
@@ -119,17 +118,17 @@ const WordCloud = React.createClass({
         };
         return option;
     },
-    getInstance:function(){
+    getInstance: function(){
         return this.refs.chart.getEchartsInstance();
     },
     render() {
         return (
-            <div className='chart-gy'>
-                <div className='parent'>
-                    <ReactEcharts ref='chart'
+            <div className="chart-gy">
+                <div className="parent">
+                    <ReactEcharts ref="chart"
                         option={this.getOption()} 
                         style={this.props.style}
-                        className='chart-bar' />
+                        className="chart-bar" />
                 </div>
             </div>
         );

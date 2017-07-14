@@ -2,16 +2,15 @@ import React from 'react';
 import ReactEcharts from './src/echarts-for-react';
 import Config from './config.jsx';
 
-//require("echarts/map/js/china.js");
-let gy = require("./gy.js");
+// require("echarts/map/js/china.js");
+let gy = require('./gy.js');
 
-
-/*地图*/
+/* 地图*/
 const Map = React.createClass({
     propTypes: {
     },
     convertData: function (data) {
-        /*let geoCoordMap = {
+        /* let geoCoordMap = {
             '乌当区': [106.75,26.63],
             '白云区': [106.65,26.68],
             '开阳县': [106.97,27.07],
@@ -46,13 +45,13 @@ const Map = React.createClass({
                     fontWeight: 'normal',
                     fontSize: 14
                 },
-                padding: [18,15],
-                //subtext: '纯属虚构',
+                padding: [18, 15],
+                // subtext: '纯属虚构',
                 left: 'left'
             },
             tooltip: tooltipFormatter ? {
                 trigger: 'item',
-                padding: [6,10],
+                padding: [6, 10],
                 backgroundColor: 'rgba(0,0,0,.5)',
                 formatter: function(p) {
                     return tooltipFormatter(p);
@@ -62,15 +61,15 @@ const Map = React.createClass({
                 orient: 'vertical',
                 left: 'left',
                 show: false,
-                data:['']
+                data: ['']
             },
-            visualMap:visualMap ? {
+            visualMap: visualMap ? {
                 min: 0,
                 max: visualMap.max,
                 textStyle: {
                     color: visualMap.textColor
                 },
-                //show:false,
+                // show:false,
                 left: visualMap.left,
                 top: visualMap.top,
                 itemWidth: 10,
@@ -78,7 +77,7 @@ const Map = React.createClass({
                 color: visualMap.color,
                 text: visualMap.text,
                 calculable: visualMap.calculable == undefined || !visualMap.calculable ? false : true
-            }:null,
+            } : null,
             toolbox: {
                 show: false,
                 orient: 'vertical',
@@ -90,10 +89,10 @@ const Map = React.createClass({
                     saveAsImage: {}
                 }
             },
-            geo:{
+            geo: {
                 map: '贵阳',
-                zoom:1.2,
-                aspectScale:1.01,
+                zoom: 1.2,
+                aspectScale: 1.01,
                 label: {
                     normal: {
                         show: false
@@ -105,10 +104,10 @@ const Map = React.createClass({
                         }
                     }
                 },
-                itemStyle:{
-                    normal:{
+                itemStyle: {
+                    normal: {
                         color: itemColor || '#437769',
-                        borderColor:'#fff'
+                        borderColor: '#fff'
                     },
                     emphasis: {
                         color: '#2A303A'
@@ -120,12 +119,12 @@ const Map = React.createClass({
                     name: '',
                     type: 'scatter',
                     coordinateSystem: 'geo',
-                    symbolSize:(val)=>{
-                        //console.log(val);
+                    symbolSize: (val)=>{
+                        // console.log(val);
                         return Math.max(val[2] / 100, 4);
                     },
-                    itemStyle:{
-                        normal:{
+                    itemStyle: {
+                        normal: {
                             color: scatterColor || '#FFAD75',
                             shadowBlur: 10,
                             shadowColor: '#fff'
@@ -137,17 +136,17 @@ const Map = React.createClass({
         };
         return option;
     },
-    getInstance:function(){
+    getInstance: function(){
         return this.refs.chart.getEchartsInstance();
     },
     render() {
         return (
-            <div className='chart-gy'>
-                <div className='parent'>
-                    <ReactEcharts ref='chart'
+            <div className="chart-gy">
+                <div className="parent">
+                    <ReactEcharts ref="chart"
                         option={this.getOption()} 
                         style={this.props.style}
-                        className='chart-bar' />
+                        className="chart-bar" />
                 </div>
             </div>
         );

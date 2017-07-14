@@ -2,7 +2,7 @@ import React from 'react';
 import ReactEcharts from './src/echarts-for-react';
 import Config from './config.jsx';
 
-/*雷达图*/
+/* 雷达图*/
 /*
 {
     legend:['实际开销','预算开销','选择行为'],
@@ -52,23 +52,23 @@ import Config from './config.jsx';
 const Rader = React.createClass({
     propTypes: {
     },
-    getSeries:function(){
+    getSeries: function(){
         const {parms, areaStyleColor, labelShow, labelFormatter} = this.props;
         var seriesData = [];
-        parms.series.forEach((val,i)=>{
+        parms.series.forEach((val, i)=>{
             var baseData = {
-                type:'radar',
-                data:val,
-                radarIndex:i,
+                type: 'radar',
+                data: val,
+                radarIndex: i,
                 areaStyle: {
-                    normal:{
-                        color:areaStyleColor||'#5bd29e'
+                    normal: {
+                        color: areaStyleColor || '#5bd29e'
                     }
                 },
-                label:{
-                    normal:{
-                        show:labelShow == undefined ? false:true,
-                        formatter:(p)=>{//'{c}(-0.2)'
+                label: {
+                    normal: {
+                        show: labelShow == undefined ? false : true,
+                        formatter: (p)=>{// '{c}(-0.2)'
                             let html = '';
                             if(labelFormatter){
                                 html = labelFormatter(p);
@@ -79,35 +79,35 @@ const Rader = React.createClass({
                         }
                     }
                 }
-            }
+            };
             seriesData.push(baseData);
         });
         return seriesData;
     },
-    getRadar:function(center, radius, parms){
+    getRadar: function(center, radius, parms){
         var baseData = {
-            center: center||['50%','50%'],
-            radius: radius||'70%',
+            center: center || ['50%', '50%'],
+            radius: radius || '70%'
             /*'name':{
                 formatter:(parms,indicator)=>{
                     
                 }
             }*/
         };
-        var radar = Object.assign(parms.radar[0],baseData);
+        var radar = Object.assign(parms.radar[0], baseData);
         return radar;
     },
-    getOption:function(){
+    getOption: function(){
         const {color, title, parms, center, radius, toolTipFormatter} = this.props;
         const option = {
-            color:color,
+            color: color,
             title: {
-                text: title||'',
-                textStyle:Config.title.textStyle,
-                padding:Config.title.padding
+                text: title || '',
+                textStyle: Config.title.textStyle,
+                padding: Config.title.padding
             },
             tooltip: {
-                formatter:toolTipFormatter?(p)=>{
+                formatter: toolTipFormatter ? (p)=>{
                     return toolTipFormatter(p);
                 } : (p)=>{
                     let html = `${p.name}<br/>`;
@@ -118,27 +118,27 @@ const Rader = React.createClass({
                 }
             },
             legend: {
-                show:true,
-                data:parms.legend,
-                textStyle:Config.legend.textStyle
+                show: true,
+                data: parms.legend,
+                textStyle: Config.legend.textStyle
             },
             radar: this.getRadar(center, radius, parms),
-            series: this.getSeries(),
+            series: this.getSeries()
             
         };
         return option;
     },
-    getInstance:function(){
+    getInstance: function(){
         return this.refs.chart.getEchartsInstance();
     },
     render() {
         return (
-            <div className='chart-gy'>
-                <div className='parent'>
-                    <ReactEcharts ref='chart'
+            <div className="chart-gy">
+                <div className="parent">
+                    <ReactEcharts ref="chart"
                         option={this.getOption()} 
                         style={this.props.style}
-                        className='chart-bar' />
+                        className="chart-bar" />
                 </div>
             </div>
         );
