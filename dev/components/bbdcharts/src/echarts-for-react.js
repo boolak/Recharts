@@ -1,20 +1,12 @@
 import echarts from 'echarts';
 import React from 'react';
-
+import PropTypes from 'prop-types';
 import elementResizeEvent from 'element-resize-event';
 
-const ReactEcharts = React.createClass({
-    propTypes: {
-        option: React.PropTypes.object.isRequired,
-        notMerge: React.PropTypes.bool,
-        lazyUpdate: React.PropTypes.bool,
-        style: React.PropTypes.object,
-        className: React.PropTypes.string,
-        theme: React.PropTypes.string,
-        onChartReady: React.PropTypes.func,
-        showLoading: React.PropTypes.bool,
-        onEvents: React.PropTypes.object
-    },
+class ReactEcharts extends  React.Component {
+    constructor(props){
+        super(props);
+    }
     // first add
     componentDidMount() {
         let echartObj = this.renderEchartDom();
@@ -28,21 +20,21 @@ const ReactEcharts = React.createClass({
             }
         }
         // on chart ready
-        if (typeof this.props.onChartReady === 'function') this.props.onChartReady(echartObj);
+        if (typeof this.props.onChartReady === 'function') {this.props.onChartReady(echartObj);}
 
         // on resize
-        elementResizeEvent(this.refs.echartsDom, function() {
+        elementResizeEvent(this.echartsDom, function() {
             echartObj.resize();
         });
-    },
+    }
     // update
     componentDidUpdate() {
-        this.renderEchartDom()
-    },
+        this.renderEchartDom();
+    }
     // remove
     componentWillUnmount() {
-        echarts.dispose(this.refs.echartsDom)
-    },
+        echarts.dispose(this.echartsDom);
+    }
     // render the dom
     renderEchartDom() {
         // init the echart object
@@ -50,23 +42,34 @@ const ReactEcharts = React.createClass({
         // set the echart option
         echartObj.setOption(this.props.option, this.props.notMerge || false, this.props.lazyUpdate || false);
         // set loading mask
-        if (this.props.showLoading) echartObj.showLoading();
-        else echartObj.hideLoading();
+        if (this.props.showLoading) {echartObj.showLoading();}
+        else {echartObj.hideLoading();}
 
         return echartObj;
-    },
+    }
     getEchartsInstance() {
         // return the echart object
-        return echarts.getInstanceByDom(this.refs.echartsDom) || echarts.init(this.refs.echartsDom, this.props.theme);
-    },
+        return echarts.getInstanceByDom(this.echartsDom) || echarts.init(this.echartsDom, this.props.theme);
+    }
     render() {
         let style = this.props.style || {height: '300px'};
         // for render
         return (
-            <div ref='echartsDom'
+            <div ref={(ref)=>{this.echartsDom = ref;}}
                 className={this.props.className}
                 style={style} />
         );
     }
-});
+}
+ReactEcharts.propTypes = {
+    option: PropTypes.object.isRequired,
+    notMerge: PropTypes.bool,
+    lazyUpdate: PropTypes.bool,
+    style: PropTypes.object,
+    className: PropTypes.string,
+    theme: PropTypes.string,
+    onChartReady: PropTypes.func,
+    showLoading: PropTypes.bool,
+    onEvents: PropTypes.object
+};
 module.exports = ReactEcharts;
