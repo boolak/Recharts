@@ -38,7 +38,7 @@ const LineBar = React.createClass({
                     }
                 }
             };
-            if(type[i] === 'line'){
+            if(parms.yAxis.length > 1 && type[i] === 'line'){
                 base.yAxisIndex = 1;
             }
             series.push(base);
@@ -46,8 +46,10 @@ const LineBar = React.createClass({
         return series;
     },
     getyAxis: function(){
-        var yAxis = [];
-        this.props.parms.yAxis.forEach(function(val, i){
+        const {parms} = this.props;
+        var yAxisLength = parms.yAxis.length,
+            yAxis = yAxisLength > 1 ? [] : {};
+        parms.yAxis.forEach((val, i)=>{
             var base = {
                 type: 'value',
                 name: val,
@@ -63,8 +65,12 @@ const LineBar = React.createClass({
                     formatter: '{value} ml'
                 }*/
             };
-            yAxis.push(base);
-        }.bind(this));
+            if(yAxisLength > 1){
+                yAxis.push(base);
+            }else{
+                yAxis = base;
+            }
+        });
         return yAxis;
     },
     getOption: function(){
