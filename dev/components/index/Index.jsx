@@ -25,7 +25,7 @@ import EgMapCat from './index/EgMapCat';
 import EgMapHot from './index/EgMapHot';
 import EgMapLine from './index/EgMapLine';
 import EgPieNest from './index/EgPieNest';
-
+import EgLiquidFill from './index/EgLiquidFill';
 
 /*首页*/
 const Index = React.createClass({
@@ -57,6 +57,7 @@ const Index = React.createClass({
                     <li><EgMapHot {...this.props}/></li>
                     <li><EgMapLine {...this.props}/></li>
                     <li><EgPieNest {...this.props}/></li>
+                    <li><EgLiquidFill {...this.props}/></li>
                 </ul>
             </div>
         );

@@ -7,7 +7,7 @@ const LiquidFill = React.createClass({
     propTypes: {
     },
     getOption: function() {
-        const {color, radius, parms, tooltipFormatter} = this.props;
+        const {opt, parms, tooltipFormatter} = this.props;
         const option = {
             grid: {
                 top: 0,
@@ -16,25 +16,28 @@ const LiquidFill = React.createClass({
             tooltip: {
                 formatter: tooltipFormatter ? (p)=>{
                     return tooltipFormatter(p);
-                } : null
+                } : (p)=>{
+                    let html = p.name ?  `${p.name}：${p.value}` : null;
+                    return html;
+                }
             },
             series: [{
                 type: 'liquidFill',
-                color: color,
-                radius: radius,
+                color: opt.color,
+                radius: opt.radius || '50%',
                 data: parms.data,
                 outline: {
-                    borderDistance: 0,
+                    borderDistance: opt.borderDistance || 0,
                     itemStyle: {
-                        borderWidth: 4,
-                        borderColor: '#a0a7ff'
+                        borderWidth: opt.borderWidth || 6,
+                        borderColor: opt.borderColor
                     }
                 },
                 label: {
                     normal: {
                         textStyle: {
                             fontSize: 18,
-                            color: '#a0a7ff'
+                            color: opt.labelColor
                         }
                     }
                 }
